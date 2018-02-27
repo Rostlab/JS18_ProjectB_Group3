@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html ng-app="plotGraph">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>iGraph</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style>
+        html { overflow-y:scroll; }
+    </style>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="core.js"></script>
+
+</head>
+<body ng-controller="mainController">
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>JS2018</h1>
+    </div>
+    <div class="col align-self-center">
+        <div id="plot"></div>
+    </div>
+    <div class="col text-center">
+        <input type="text" class="form-control input-lg text-center" placeholder="Please enter your command" ng-model="command">
+    </div>
+    <div class="col text-center" style="padding-top: 1rem;">
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="createGraph()">Draw Graph</button>
+    </div>
+</div>
+
+</body>
+</html>
