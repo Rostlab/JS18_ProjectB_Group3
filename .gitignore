@@ -120,8 +120,6 @@ typings/
 # dotenv environment variables file
 .env
 
-package.json
-
 *~
 .DS_Store
 .idea

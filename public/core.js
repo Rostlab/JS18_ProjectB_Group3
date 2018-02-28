@@ -6,7 +6,7 @@ function mainController($scope, $http) {
   $http.get('/graph')
     .success(function(chart) {
       $scope.grapObject = {};
-      Plotly.newPlot('plot', chart._data);
+      Plotly.newPlot('plot', chart._data, chart._layout);
     })
     .error(function(data) {
       console.log('Error: ' + data);
