@@ -19,11 +19,12 @@
   },
   "homepage": "https://github.com/Rostlab/JS18_ProjectB_Group3#readme",
   "dependencies": {
-    "express": "~4.7.2",
-    "mongoose": "~3.6.2",
-    "morgan": "~1.2.2",
     "body-parser": "~1.5.2",
-    "method-override": "~2.1.2"
+    "express": "~4.7.2",
+    "lodash": "^4.17.5",
+    "method-override": "~2.1.2",
+    "mongoose": "~3.6.2",
+    "morgan": "~1.2.2"
   },
   "devDependencies": {
     "ajv": "^6.2.0",
