@@ -11,6 +11,14 @@ class BarTrace {
   }
 
   /**
+   * Get type
+   * @returns {string}
+   */
+  get type() {
+    return this._type;
+  }
+
+  /**
    * Get x values of X axis
    * @returns {*}
    */
