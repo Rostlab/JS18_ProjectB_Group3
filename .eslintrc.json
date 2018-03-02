@@ -1,7 +1,8 @@
 {
     "extends": "airbnb-base",
     "rules": {
-        "no-underscore-dangle": ["error", { "allowAfterThis": true }]
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "class-methods-use-this": [1]
     },
     "env": {
         "node": true,
