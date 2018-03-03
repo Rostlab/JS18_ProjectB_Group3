@@ -4,3 +4,5 @@ node_js:
 script:
 - npm run test
 - npm run lint
+deploy:
+  provider: azure_web_apps
