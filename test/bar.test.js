@@ -18,7 +18,7 @@ describe('BarChart Tests', () => {
     expect(barTrace.type).to.equal('bar');
     expect(barTrace.x).to.have.lengthOf(3);
     expect(barTrace.y).to.have.lengthOf(3);
-    expect(barTrace.color).to.equal('red');
+    expect(barTrace.marker.color).to.equal('red');
     expect(barTrace.name).to.equal('Trace 1');
     const testData = {
       type: 'bar',
@@ -33,17 +33,20 @@ describe('BarChart Tests', () => {
   });
 
   it('expects create Bar Chart object', () => {
-    const x = [
-      'giraffes',
-      'orangutans',
-      'monkeys',
-    ];
-    const y = [
-      20,
-      14,
-      23,
-    ];
-    const barTrace = new BarTrace(x, y, 'red', 'Trace 1');
+    const trace = {
+      x: [
+        'giraffes',
+        'orangutans',
+        'monkeys',
+      ],
+      y: [
+        20,
+        14,
+        23,
+      ],
+      color: 'red',
+      name: 'Trace 1',
+    };
     const layout = {
       title: 'Test Chart',
       xaxis: {
@@ -63,8 +66,25 @@ describe('BarChart Tests', () => {
         },
       },
     };
-    const testBarChart = new Bar([barTrace.getTraceData()], layout);
+    const testBarChart = new Bar(layout, [trace]);
+    const testData = [{
+      type: 'bar',
+      x: [
+        'giraffes',
+        'orangutans',
+        'monkeys',
+      ],
+      y: [
+        20,
+        14,
+        23,
+      ],
+      marker: {
+        color: 'red',
+      },
+      name: 'Trace 1',
+    }];
     expect(testBarChart.layout).to.deep.equal(layout);
-    expect(testBarChart.data).to.deep.equal([barTrace.getTraceData()]);
+    expect(testBarChart.data).to.deep.equal(testData);
   });
 });
