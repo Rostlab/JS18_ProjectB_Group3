@@ -12,14 +12,17 @@ function mainController($scope, $http) {
       console.log('Error: ' + data);
     });
 
-  $scope.createGraph = function() {
-    $http.post('/graph', $scope.command)
-      .success(function(data) {
-        $scope.command = '';
-        console.log(data);
-      })
-      .error(function(data) {
-        console.log('Error: ' + data);
-      });
+    $scope.createGraph = function() {
+      $http.post('/graph', {input: $scope.command})
+        .success(function(chart) {
+          console.log("test");
+          // change newPlot to Plotly.restlye?
+          Plotly.newPlot('plot', chart._data, chart._layout);
+          $scope.command = '';
+          console.log(chart);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+        });
   };
 }
