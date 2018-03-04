@@ -5,7 +5,7 @@ const BarTrace = require('../data/barTrace');
 
 var data = require('../data/mockDataNico').data;
 var layout = require('../data/mockDataNico').layout;
-var bar = new Bar(data, layout);
+var bar = new Bar(layout, data);
 
 module.exports = function(app) {
   app.get('/graph', (req, res) => {
@@ -18,10 +18,10 @@ module.exports = function(app) {
     // TODO A new subclass of Chart has to be created based on the user command
     //console.log(req.body.input);
     //console.log(bar.layout.title);
-
+    console.log("PRINT REQ.BODY.INPUT: ", req.body.input);
     var result = inputProcessing.process(req.body.input, data);
 
-
+    console.log("PRINT RESULT: ", result);
     res.json(result);
   });
 

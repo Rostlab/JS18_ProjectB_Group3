@@ -25,30 +25,20 @@ var regexes = [
 
 ];
 
-// var match = require('js-pattern-matching');
-// var natural = require('natural');
-// var tokenizer = new natural.WordTokenizer();
-
-// js-pattern-matching pattern for matching array ... some error here
-// const getIndexOfKeyWord = (array) =>  match (array) (
-//   (array.includes('title')) => array.indexOf('title'),
-//   //(v= "hello") => "A greeting"
-// )
-// function getIndexOfKeyWord(array){
-//   if (array.includes('title')){
-//     return array.indexOf('title')
-//   }
-// }
 
 // processes the nlp input
 function process(input, data){
-  // tokenize input
-  // var processedInput = tokenizer.tokenize(input);
+
+  // console.log("PRINT INPUT IN PROCESSING: ", input);
+  // console.log("PRINT DATA IN PROCESSING: ", data);
 
 
   for(let rule of regexes) {
+    console.log("PRINT REGEX OUTPUT TEST: ", rule.regex.test(input));
     if(rule.regex.test(input)) {
-      console.log(rule.regex.exec(input));
+      console.log("PRINT REGEX OUTPUT EXEC: ", rule.regex.exec(input));
+      console.log("TEST");
+      // NO default rule yet, instantiates empty chart if null match
        let lib = new modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
        return lib.apply();
     }

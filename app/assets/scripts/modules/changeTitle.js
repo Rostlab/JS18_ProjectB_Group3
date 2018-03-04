@@ -6,8 +6,8 @@ const Bar = require('../../../../charts/bar');
 const BarTrace = require('../../../../data/barTrace');
 
 class ChangeTitle {
-  constructor(graphObject, params){
-    this._graphObject = graphObject;
+  constructor(data, params){
+    this._data = data;
     this._newTitle = params.newTitle;
   }
 
@@ -16,7 +16,7 @@ class ChangeTitle {
       //title: req.body.input
       title: this._newTitle
     }
-    var editBar = new Bar(this._graphObject, newLayout);
+    var editBar = new Bar(newLayout, this._data);
 
     return editBar;
   }
