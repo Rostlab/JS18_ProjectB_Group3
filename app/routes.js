@@ -1,57 +1,29 @@
+
+const inputProcessing = require('./assets/scripts/inputProcessing');
 const Bar = require('../charts/bar');
+// const BarTrace = require('../data/barTrace');
+
+const { defaultData: data } = require('../data/mockDataNico');
+const { defaultLayout: layout } = require('../data/mockDataNico');
+
+const bar = new Bar(layout, data);
 
 module.exports = function (app) {
   app.get('/graph', (req, res) => {
-    /**
-     * Create data for Bar Chart
-     */
-    const trace1 = {
-      x: [
-        'giraffes',
-        'orangutans',
-        'monkeys',
-      ],
-      y: [
-        20,
-        14,
-        23,
-      ],
-      color: 'red',
-      name: 'Trace 1',
-    };
+    // returns the bar graph object
 
-    const trace2 = {
-      x: [
-        'lions',
-        'tigers',
-        'wolfes',
-      ],
-      y: [
-        6,
-        3,
-        10,
-      ],
-      color: 'blue',
-      name: 'Trace 2',
-    };
-
-    /**
-     * Create layout for Bar Chart
-     */
-    const layout = {
-      title: 'Test Bar Chart',
-    };
-    /**
-     * Create a bar object as default value and return it in the response body
-     * @type {Bar}
-     */
-    const bar = new Bar(layout, [trace1, trace2]);
     res.json(bar);
   });
 
   app.post('/graph', (req, res) => {
     // TODO A new subclass of Chart has to be created based on the user command
-    res.json({ success: true });
+    // console.log(req.body.input);
+    // console.log(bar.layout.title);
+    console.log('PRINT REQ.BODY.INPUT: ', req.body.input);
+    const result = inputProcessing.process(req.body.input, data);
+
+    console.log('PRINT RESULT: ', result);
+    res.json(result);
   });
 
   app.get('*', (req, res) => {
