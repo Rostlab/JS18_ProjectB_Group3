@@ -12,13 +12,13 @@ const trace2 = {
   type: 'bar',
 };
 
-const data = [trace1, trace2];
+const defaultData = [trace1, trace2];
 
-const layout = {
+const defaultLayout = {
   title: 'group',
 };
 
 module.exports = {
-  data,
-  layout,
+  defaultData,
+  defaultLayout,
 };

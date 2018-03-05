@@ -3,8 +3,8 @@ const inputProcessing = require('./assets/scripts/inputProcessing');
 const Bar = require('../charts/bar');
 // const BarTrace = require('../data/barTrace');
 
-const {data: data} = require('../data/mockDataNico');
-const {layout: layout} = require('../data/mockDataNico');
+const { defaultData: data } = require('../data/mockDataNico');
+const { defaultLayout: layout } = require('../data/mockDataNico');
 
 const bar = new Bar(layout, data);
 
