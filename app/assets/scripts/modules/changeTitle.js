@@ -17,7 +17,7 @@ class ChangeTitle {
       title: this._newTitle
     }
     var editBar = new Bar(newLayout, this._data);
-
+    console.log(editBar, 'ASDASDA');
     return editBar;
   }
 }

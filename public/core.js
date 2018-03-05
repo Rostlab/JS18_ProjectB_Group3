@@ -17,7 +17,7 @@ function mainController($scope, $http) {
         .success(function(chart) {
           console.log("test");
           // change newPlot to Plotly.restlye?
-          Plotly.newPlot('plot', chart._data, chart._layout);
+          Plotly.newPlot('plot', chart.data, chart.layout);
           $scope.command = '';
           console.log(chart);
         })
