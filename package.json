@@ -1,0 +1,36 @@
+{
+  "name": "js18_projectb_group3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js",
+    "lint": "eslint ./**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rostlab/JS18_ProjectB_Group3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rostlab/JS18_ProjectB_Group3/issues"
+  },
+  "homepage": "https://github.com/Rostlab/JS18_ProjectB_Group3#readme",
+  "dependencies": {
+    "body-parser": "~1.5.2",
+    "express": "~4.7.2",
+    "lodash": "^4.17.5",
+    "method-override": "~2.1.2",
+    "morgan": "~1.2.2"
+  },
+  "devDependencies": {
+    "ajv": "^6.2.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "mocha": "^5.0.1"
+  }
+}
