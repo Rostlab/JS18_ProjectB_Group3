@@ -2,29 +2,26 @@
 * this module is for input processing of the natural language
 */
 const _ = require('lodash');
-var modules = {
-  'ChangeTitle': require('./modules/changeTitle'),
-  'ChangeColorOrWidth': require('./modules/ChangeColorOrWidth')
-};
+const modules = require('./modules');
 
 var regexes = [
   {
     regex: /^(change|set) title to (.*?)$/im,
-    command: 'ChangeTitle',
+    command: 'changeTitle',
     arguments: function(matches) {
       return {newTitle: matches[2]};
     }
   },
   {
     regex: /^change title of (x|y)-axis to (.*?)$/im,
-    command: 'ChangeAxisTitle',
+    command: 'changeAxisTitle',
     arguments: function(matches) {
       return {axis: matches[1], newTitle: matches[2]};
     }
   },
   {
     regex: /(.*?): (change|set) (color|width|size) of (dot|line) to (.*?)$/im,
-    command: 'ChangeColorOrWidth',
+    command: 'changeColorOrWidth',
     arguments: (matches) => {
       return {
         name: matches[1],
@@ -45,8 +42,7 @@ function process(input, data){
     if(rule.regex.test(input)) {
 
       // NO default rule yet, instantiates empty chart if null match
-       let lib = new modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
-       return lib.apply();
+      return modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
     }
   }
 
