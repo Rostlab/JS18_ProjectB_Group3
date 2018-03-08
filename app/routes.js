@@ -1,26 +1,50 @@
-
 const inputProcessing = require('./assets/scripts/inputProcessing');
-const Bar = require('../charts/bar');
-// const BarTrace = require('../data/barTrace');
+const ChartFactory = require('./helpers/chartFactory');
+const {
+  defaultData: data, defaultLayout: layout,
+  scatterData, scatterLayout,
+} = require('../data/mockData');
+const _ = require('lodash');
 
-const { defaultData: data } = require('../data/mockDataNico');
-const { defaultLayout: layout } = require('../data/mockDataNico');
-
-const bar = new Bar(layout, data);
 
 module.exports = function (app) {
   app.get('/graph', (req, res) => {
-    // returns the bar graph object
-
-    res.json(bar);
+    // user ChartFactory to create a chart based on the selected example
+    // load mock data (layout and data) based on the selected example
+    const chart = {
+      layout: undefined,
+      data: undefined,
+    };
+    const selectedExample = _.lowerCase(req.query.example);
+    switch (selectedExample) {
+      case 'bar':
+        chart.layout = layout;
+        chart.data = data;
+        break;
+      case 'scatter':
+        chart.layout = scatterLayout;
+        chart.data = scatterData;
+        break;
+      case 'histogram':
+        break;
+      case 'pie':
+        break;
+      case 'line':
+        break;
+      default:
+        chart.layout = layout;
+        chart.data = data;
+        break;
+    }
+    const chartFactory = new ChartFactory();
+    const example = chartFactory.create(selectedExample, chart);
+    res.json(example);
   });
 
   app.post('/graph', (req, res) => {
-    // TODO A new subclass of Chart has to be created based on the user command
-    // console.log(req.body.input);
-    // console.log(bar.layout.title);
     console.log('PRINT REQ.BODY.INPUT: ', req.body.input);
-    const result = inputProcessing.process(req.body.input, data);
+    // use the existing chart object to redraw the chart
+    const result = inputProcessing.process(req.body.input, req.body.chart);
 
     console.log('PRINT RESULT: ', result);
     res.json(result);

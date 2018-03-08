@@ -3,7 +3,7 @@ const BarTrace = require('../data/barTrace');
 const Bar = require('../charts/bar');
 
 describe('BarChart Tests', () => {
-  it('expects create BarTrace object', () => {
+  it('expects a BarTrace object', () => {
     const x = [
       'giraffes',
       'orangutans',
@@ -32,7 +32,7 @@ describe('BarChart Tests', () => {
     expect(barTrace.getTraceData()).to.deep.equal(testData);
   });
 
-  it('expects create Bar Chart object', () => {
+  it('expects a Bar Chart object', () => {
     const trace = {
       x: [
         'giraffes',
