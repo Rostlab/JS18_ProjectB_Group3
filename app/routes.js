@@ -49,8 +49,6 @@ module.exports = function (app) {
     console.log('PRINT RESULT: ', result);
 
     res.json(result);
-
-
   });
 
   app.get('*', (req, res) => {
