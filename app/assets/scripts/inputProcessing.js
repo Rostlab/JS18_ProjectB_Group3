@@ -42,6 +42,16 @@ var regexes = [
     }
   },
   {
+    regex: /(change|set) position of legend to (.*),(.*)$/im,
+    command: 'changeLegendPosition',
+    arguments: (matches) => {
+      return {
+        newXValue: matches[2],
+        newYValue: matches[3]
+      };
+    }
+  },
+  {
     regex: /(.*?): (change|set) mode to (.*?)$/im,
     command: 'changeScatterConnectionLines',
     arguments: (matches) => {
@@ -94,6 +104,15 @@ var regexes = [
       };
     }
   },
+  {
+    regex: /(change|set) size of legend to (.*?)$/im,
+    command: 'changeLegendSize',
+    arguments: (matches) => {
+      return {
+        newValue: matches[2]
+      };
+    }
+  }
 ];
 
 // processes the nlp input

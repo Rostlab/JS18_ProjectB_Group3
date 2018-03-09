@@ -64,6 +64,8 @@ function mainController($scope, $http) {
   var setScatterDashType = '\n - Trace1: set dash to dash (currently just for Scatter Plot)';
   var setScatterMarkerOpacity = '\n - Trace1: set opacity to 0.8 (currently just for Scatter Plot)';
   var setScatterMarkerSymbol = '\n - Trace1: set symbol to dot (currently just for Scatter Plot)';
+  var setLegendSize = '\n - set/change size of legend to <new size>';
+  var setLegendPosition = '\n - change title of y-axis to <new position> (e.g. 1,1)';
 
   function inputAlert() {
     alert("Wront input! \n\nvalid inputs are: " +
@@ -76,6 +78,8 @@ function mainController($scope, $http) {
       setScatterConnectionLines +
       setScatterDashType +
       setScatterMarkerOpacity +
-      setScatterMarkerSymbol);
+      setScatterMarkerSymbol +
+      setLegendSize +
+      setLegendPosition);
   }
 }

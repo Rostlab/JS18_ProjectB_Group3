@@ -9,13 +9,15 @@ class Chart {
     this.showlegend = layoutOptions.showlegend;
     this.legend = {
       x: layoutOptions &&
-         layoutOptions.legendPosition &&
-         layoutOptions.legendPosition.x ? layoutOptions.legendPosition.x : 1,
+         layoutOptions.legend &&
+         layoutOptions.legend.x ? layoutOptions.legend.x : 1,
       y: layoutOptions &&
-         layoutOptions.legendPosition &&
-         layoutOptions.legendPosition.y ? layoutOptions.legendPosition.y : 1,
+         layoutOptions.legend &&
+         layoutOptions.legend.y ? layoutOptions.legend.y : 1,
       font: {
-        size: layoutOptions && layoutOptions.legendFont ? layoutOptions.legendFont : 12,
+        size: layoutOptions && layoutOptions.legend &&
+              layoutOptions.legend.font &&
+              layoutOptions.legend.font.size ? layoutOptions.legend.font.size : 12,
       },
     };
   }
