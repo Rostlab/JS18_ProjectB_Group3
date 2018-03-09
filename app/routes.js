@@ -47,7 +47,10 @@ module.exports = function (app) {
     const result = inputProcessing.process(req.body.input, req.body.chart);
 
     console.log('PRINT RESULT: ', result);
+
     res.json(result);
+
+
   });
 
   app.get('*', (req, res) => {

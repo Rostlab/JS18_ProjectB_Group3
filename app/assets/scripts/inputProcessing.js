@@ -38,10 +38,10 @@ var regexes = [
 function process(input, data){
 
   for(let rule of regexes) {
-    
-    if(rule.regex.test(input)) {
 
+    if(rule.regex.test(input)) {
       // NO default rule yet, instantiates empty chart if null match
+      console.log(rule.regex.exec(input));
       return modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
     }
   }
