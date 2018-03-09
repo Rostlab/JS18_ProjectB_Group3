@@ -1,3 +1,8 @@
+/*
+* Mock data for bar chart
+*
+*/
+
 const trace1 = {
   x: ['giraffes', 'orangutans', 'monkeys'],
   y: [20, 14, 23],
@@ -18,6 +23,11 @@ const defaultLayout = {
   title: 'group',
 };
 
+
+/*
+* Mock data for scatter plot
+*
+*/
 const scatterTrace1 = {
   x: [2, 3, 4, 5],
   y: [16, 5, 11, 9],
