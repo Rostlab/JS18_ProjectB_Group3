@@ -112,7 +112,18 @@ var regexes = [
         newValue: matches[2]
       };
     }
-  }
+  },
+  {
+    regex: /(change|set) (color|width|size) of gridlines of (x|y)-axis to (.*?)$/im,
+    command: 'changeGridlinesColorAndWidth',
+    arguments: (matches) => {
+      return {
+        option: _.lowerCase(matches[2]),
+        axis: matches[3],
+        newValue: _.lowerCase(matches[4])
+      };
+    }
+  },
 ];
 
 // processes the nlp input

@@ -101,11 +101,15 @@ describe('ScatterChart Tests', () => {
     const layout = {
       title: 'Scatter Plot',
       xaxis: {
+        gridcolor: undefined,
+        gridwidth: undefined,
         range: undefined,
         title: 'X Axis',
         showgrid: true,
       },
       yaxis: {
+        gridcolor: undefined,
+        gridwidth: undefined,
         range: undefined,
         title: 'Y Axis',
         showgrid: true,

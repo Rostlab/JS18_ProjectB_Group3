@@ -66,6 +66,7 @@ function mainController($scope, $http) {
   var setScatterMarkerSymbol = '\n - Trace1: set symbol to dot (currently just for Scatter Plot)';
   var setLegendSize = '\n - set/change size of legend to <new size>';
   var setLegendPosition = '\n - change title of y-axis to <new position> (e.g. 1,1)';
+  var setYAxisGridlinesColor = '\n - Trace1: set color of gridlines of x-axis to 10';
 
   function inputAlert() {
     alert("Wront input! \n\nvalid inputs are: " +
@@ -80,6 +81,7 @@ function mainController($scope, $http) {
       setScatterMarkerOpacity +
       setScatterMarkerSymbol +
       setLegendSize +
-      setLegendPosition);
+      setLegendPosition +
+      setYAxisGridlinesColor);
   }
 }

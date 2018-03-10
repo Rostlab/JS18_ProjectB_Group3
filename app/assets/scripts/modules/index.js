@@ -9,6 +9,7 @@ const changeScatterMarkerOpacity = require('./setScatterMarkerOpacity');
 const changeScatterSymbol = require('./setScatterSymbol');
 const changeLegendPosition = require('./setLegendPosition');
 const changeLegendSize = require('./setLegendSize');
+const changeGridlinesColorAndWidth = require('./setGridlinesColorAndWidth');
 
 module.exports = exports = {
   changeTitle,
@@ -22,4 +23,5 @@ module.exports = exports = {
   changeScatterSymbol,
   changeLegendPosition,
   changeLegendSize,
+  changeGridlinesColorAndWidth,
 };
