@@ -42,12 +42,8 @@ module.exports = function (app) {
   });
 
   app.post('/graph', (req, res) => {
-    console.log('PRINT REQ.BODY.INPUT: ', req.body.input);
     // use the existing chart object to redraw the chart
     const result = inputProcessing.process(req.body.input, req.body.chart);
-
-    console.log('PRINT RESULT: ', result);
-
     res.json(result);
   });
 

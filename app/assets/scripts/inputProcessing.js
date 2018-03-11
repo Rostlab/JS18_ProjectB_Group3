@@ -30,6 +30,22 @@ var regexes = [
         newValue: _.lowerCase(matches[5])
       };
     }
+  },
+  {
+    regex: /randomly remove (half|([0-9]{1,2})%) of the datapoints$/im,
+    command: 'randomlyRemoveDatapoints',
+    arguments: (matches) => {
+      let percentage = matches[1];
+
+      if(percentage == 'half')
+        percentage = 0.5;
+      else
+        percentage = matches[2] / 100.0;
+
+      return {
+        'percentage': percentage
+      };
+    }
   }
 ];
 
@@ -41,7 +57,6 @@ function process(input, data){
 
     if(rule.regex.test(input)) {
       // NO default rule yet, instantiates empty chart if null match
-      console.log(rule.regex.exec(input));
       return modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
     }
   }
