@@ -1,5 +1,5 @@
 /*
-* Mock data for bar chart
+* Mock data for charts
 *
 */
 
@@ -61,9 +61,44 @@ const scatterLayout = {
   title: 'Scatter Plot',
 };
 
+/*
+* Mock data for histogram plot
+*
+*/
+const x1 = [];
+const x2 = [];
+const y1 = [];
+const y2 = [];
+for (let i = 1; i < 500; i += 1) {
+  const k = Math.random();
+  x1.push(k * 5);
+  x2.push(k * 10);
+  y1.push(k);
+  y2.push(k * 2);
+}
+
+const histogramTrace1 = {
+  x: x1,
+  y: y1,
+  name: 'Trace1',
+};
+
+const histogramTrace2 = {
+  x: x2,
+  y: y2,
+  name: 'Trace2',
+};
+const histogramData = [histogramTrace1, histogramTrace2];
+
+const histogramLayout = {
+  title: 'Histogram',
+};
+
 module.exports = {
   defaultData,
   defaultLayout,
   scatterData,
   scatterLayout,
+  histogramData,
+  histogramLayout,
 };

@@ -30,6 +30,29 @@ var regexes = [
         newValue: _.lowerCase(matches[5])
       };
     }
+  },
+  {
+    regex: /^(change|set) range of (x|y)-axis to (.*),(.*)$/im,
+    command: 'changeAxisRange',
+    arguments: (matches) => {
+      return {
+        axis: matches[2],
+        newValue: [matches[3], matches[4]]
+      };
+    }
+  },
+  {
+    regex: /(.*?): (change|set) start,end,size of (x|y) to (.*),(.*),(.*)$/im,
+    command: 'changeBinNumber',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        axis: matches[3],
+        newStart: matches[4],
+        newEnd: matches[5],
+        newSize: matches[6],
+      };
+    }
   }
 ];
 

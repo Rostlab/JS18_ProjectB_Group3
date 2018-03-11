@@ -71,6 +71,7 @@ function mainController($scope, $http) {
   var setXAxisTitle = '\n - change title of x-axis to <new title>';
   var setYAxisTitle = '\n - change title of y-axis to <new title>';
   var setScatterLineThick = '\n - Trace1: set width of line to 10 (currently just for Scatter Plot)';
+  var setHistogramBinNumber = '\n - (change bin number) Trace1: set start,end,size of x to 0,20,0.5 (currently just for Histogram)';
 
 
 
@@ -82,7 +83,8 @@ function mainController($scope, $http) {
       setTitle +
       setXAxisTitle +
       setYAxisTitle +
-      setScatterLineThick);
+      setScatterLineThick +
+      setHistogramBinNumber);
   }
 
 

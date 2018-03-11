@@ -1,5 +1,7 @@
-const Bar = require('../../charts/bar');
-const Scatter = require('../../charts/scatter');
+const Charts = require('../../charts');
+const Bar = Charts.Bar;
+const Scatter = Charts.Scatter;
+const Histogram = Charts.Histogram;
 
 class ChartFactory {
 
@@ -18,6 +20,7 @@ class ChartFactory {
         return new Scatter(chartProperties.layout, chartProperties.data);
         break;
       case 'histogram':
+        return new Histogram(chartProperties.layout, chartProperties.data);
         break;
       case 'pie':
         break;
