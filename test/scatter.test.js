@@ -21,10 +21,13 @@ describe('ScatterChart Tests', () => {
       mode: 'lines+markers',
       type: 'scatter',
       marker: {
+        opacity: undefined,
+        symbol: undefined,
         color: 'red',
         size: 12,
       },
       line: {
+        dash: undefined,
         color: 'red',
         width: 10,
       },
@@ -98,10 +101,12 @@ describe('ScatterChart Tests', () => {
     const layout = {
       title: 'Scatter Plot',
       xaxis: {
+        range: undefined,
         title: 'X Axis',
         showgrid: true,
       },
       yaxis: {
+        range: undefined,
         title: 'Y Axis',
         showgrid: true,
       },

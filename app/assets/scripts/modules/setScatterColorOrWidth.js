@@ -1,10 +1,10 @@
 /*
-* test module for changing the title
+* test module for changing the color or the width of scatter plot
 */
 const ChartFactory = require('../../../helpers/chartFactory');
 const _  = require('lodash');
 
-const setColorOrWidth = (chart, params) => {
+const setScatterColorOrWidth = (chart, params) => {
   _.each(chart.data, (d) => {
     if (d.name === params.name) {
       if (params.attribute === 'dot') {
@@ -30,4 +30,4 @@ const setColorOrWidth = (chart, params) => {
   return editScatter;
 };
 
-module.exports = setColorOrWidth;
+module.exports = setScatterColorOrWidth;

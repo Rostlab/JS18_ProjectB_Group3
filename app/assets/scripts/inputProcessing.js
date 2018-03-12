@@ -21,7 +21,7 @@ var regexes = [
   },
   {
     regex: /(.*?): (change|set) (color|width|size) of (dot|line) to (.*?)$/im,
-    command: 'changeColorOrWidth',
+    command: 'changeScatterColorOrWidth',
     arguments: (matches) => {
       return {
         name: matches[1],
@@ -42,6 +42,26 @@ var regexes = [
     }
   },
   {
+    regex: /(.*?): (change|set) mode to (.*?)$/im,
+    command: 'changeScatterConnectionLines',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        newValue: _.lowerCase(matches[3])
+      };
+    }
+  },
+  {
+    regex: /(.*?): (change|set) dash to (.*?)$/im,
+    command: 'changeScatterLineDash',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        newValue: _.lowerCase(matches[3])
+      };
+    }
+  },
+  {
     regex: /(.*?): (change|set) start,end,size of (x|y) to (.*),(.*),(.*)$/im,
     command: 'changeBinNumber',
     arguments: (matches) => {
@@ -53,9 +73,28 @@ var regexes = [
         newSize: matches[6],
       };
     }
-  }
+  },
+  {
+    regex: /(.*?): (change|set) opacity to (.*?)$/im,
+    command: 'changeScatterMarkerOpacity',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        newValue: _.lowerCase(matches[3])
+      };
+    }
+  },
+  {
+    regex: /(.*?): (change|set) symbol to (.*?)$/im,
+    command: 'changeScatterSymbol',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        newValue: _.lowerCase(matches[3])
+      };
+    }
+  },
 ];
-
 
 // processes the nlp input
 function process(input, data){
