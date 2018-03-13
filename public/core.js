@@ -71,7 +71,7 @@ function mainController($scope, $http) {
   var setXAxisTitle = '\n - change title of x-axis to <new title>';
   var setYAxisTitle = '\n - change title of y-axis to <new title>';
   var setScatterLineThick = '\n - Trace1: set width of line to 10 (currently just for Scatter Plot)';
-
+  var setBarWidth = '\n - change width of bar to <new width>';
 
 
 
@@ -82,7 +82,8 @@ function mainController($scope, $http) {
       setTitle +
       setXAxisTitle +
       setYAxisTitle +
-      setScatterLineThick);
+      setScatterLineThick +
+      setBarWidth);
   }
 
 

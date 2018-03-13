@@ -30,6 +30,13 @@ var regexes = [
         newValue: _.lowerCase(matches[5])
       };
     }
+  },
+  {
+    regex: /^(change|set) (width) of bar to (.*?)$/im,
+    command: 'changeBarWidth',
+    arguments: function(matches) {
+      return {newBarWidth: matches[3]};
+    }
   }
 ];
 
