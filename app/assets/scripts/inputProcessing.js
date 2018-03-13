@@ -32,6 +32,13 @@ var regexes = [
     }
   },
   {
+    regex: /^(change|set) (width) of bar to (.*?)$/im,
+    command: 'changeBarWidth',
+    arguments: function(matches) {
+      return {newBarWidth: matches[3]};
+    }
+  },
+  {
     regex: /^(change|set) range of (x|y)-axis to (.*),(.*)$/im,
     command: 'changeAxisRange',
     arguments: (matches) => {
