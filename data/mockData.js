@@ -32,28 +32,29 @@ const scatterTrace1 = {
   x: [2, 3, 4, 5],
   y: [16, 5, 11, 9],
   marker: {
+    opacity: 0.2,
+    symbol: 'star',
     color: 'red',
-    size: 4,
+    size: 8,
   },
   line: {
     color: 'red',
     width: 3,
   },
   name: 'Trace1',
+  mode: 'lines+markers',
 };
 
 const scatterTrace2 = {
   x: [1, 2, 3, 4],
   y: [12, 9, 15, 12],
-  marker: {
-    color: 'blue',
-    size: 8,
-  },
   line: {
+    dash: 'dash',
     color: 'blue',
     width: 3,
   },
   name: 'Trace2',
+  mode: 'lines',
 };
 const scatterData = [scatterTrace1, scatterTrace2];
 

@@ -1,9 +1,8 @@
 var plotGraph = angular.module('plotGraph', []);
 
-
 function mainController($scope, $http) {
   $scope.command = '';
-  $scope.examples = ['Bar', 'Scatter', 'Histogram', 'Pie', 'Line'];
+  $scope.examples = ['Bar', 'Scatter', 'Histogram', 'Pie'];
   // save the current chart object and send it with the command in the post request
   $scope.chart = {
     data: undefined,
@@ -48,23 +47,12 @@ function mainController($scope, $http) {
           // change newPlot to Plotly.restlye?
           Plotly.newPlot('plot', chart.data, chart.layout);
           $scope.command = '';
-
-
-
         }
-
-
       })
       .error(function(data) {
         console.log('Error: ' + data);
       });
   };
-
-
-
-
-
-
 
   var changeTitle = '\n - change title to <new title>';
   var setTitle = '\n - set title to <new title>';
@@ -72,10 +60,10 @@ function mainController($scope, $http) {
   var setYAxisTitle = '\n - change title of y-axis to <new title>';
   var setScatterLineThick = '\n - Trace1: set width of line to 10 (currently just for Scatter Plot)';
   var setHistogramBinNumber = '\n - (change bin number) Trace1: set start,end,size of x to 0,20,0.5 (currently just for Histogram)';
-
-
-
-
+  var setScatterConnectionLines = '\n - Trace1: set mode to lines (currently just for Scatter Plot)';
+  var setScatterDashType = '\n - Trace1: set dash to dash (currently just for Scatter Plot)';
+  var setScatterMarkerOpacity = '\n - Trace1: set opacity to 0.8 (currently just for Scatter Plot)';
+  var setScatterMarkerSymbol = '\n - Trace1: set symbol to dot (currently just for Scatter Plot)';
 
   function inputAlert() {
     alert("Wront input! \n\nvalid inputs are: " +
@@ -84,12 +72,10 @@ function mainController($scope, $http) {
       setXAxisTitle +
       setYAxisTitle +
       setScatterLineThick +
-      setHistogramBinNumber);
+      setHistogramBinNumber +
+      setScatterConnectionLines +
+      setScatterDashType +
+      setScatterMarkerOpacity +
+      setScatterMarkerSymbol);
   }
-
-
-
-
-
-
 }

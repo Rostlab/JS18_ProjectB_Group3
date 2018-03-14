@@ -32,8 +32,6 @@ module.exports = function (app) {
         break;
       case 'pie':
         break;
-      case 'line':
-        break;
       default:
         chart.layout = layout;
         chart.data = data;

@@ -1,13 +1,21 @@
 const changeTitle = require('./setTitle');
-const changeColorOrWidth = require('./setColorOrWidth');
+const changeScatterColorOrWidth = require('./setScatterColorOrWidth');
 const changeAxisTitle = require('./setAxisTitle');
 const changeAxisRange = require('./setAxisRange');
 const changeBinNumber = require('./setBinNumber');
+const changeScatterConnectionLines = require('./setScatterConnectionLines');
+const changeScatterLineDash = require('./setScatterLineDash');
+const changeScatterMarkerOpacity = require('./setScatterMarkerOpacity');
+const changeScatterSymbol = require('./setScatterSymbol');
 
 module.exports = exports = {
   changeTitle,
-  changeColorOrWidth,
+  changeScatterColorOrWidth,
   changeAxisTitle,
   changeAxisRange,
-  changeBinNumber
+  changeBinNumber,
+  changeScatterConnectionLines,
+  changeScatterLineDash,
+  changeScatterMarkerOpacity,
+  changeScatterSymbol,
 };

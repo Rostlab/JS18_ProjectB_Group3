@@ -24,8 +24,6 @@ class ChartFactory {
         break;
       case 'pie':
         break;
-      case 'line':
-        break;
       default:
         return new Bar(chartProperties.layout, chartProperties.data);
         break;

@@ -22,10 +22,13 @@ describe('ChartFactory Tests', () => {
           ],
           name: 'Trace1',
           marker: {
+            opacity: undefined,
+            symbol: undefined,
             color: 'red',
             size: '5',
           },
           line: {
+            dash: undefined,
             color: 'red',
             width: 3,
           },
@@ -47,10 +50,13 @@ describe('ChartFactory Tests', () => {
           ],
           name: 'Trace2',
           marker: {
+            opacity: undefined,
+            symbol: undefined,
             color: 'blue',
             size: 8,
           },
           line: {
+            dash: undefined,
             color: 'blue',
             width: 3,
           },
@@ -59,10 +65,12 @@ describe('ChartFactory Tests', () => {
       layout: {
         title: 'Scatter Plot',
         xaxis: {
+          range: undefined,
           title: 'X Axis',
           showgrid: true,
         },
         yaxis: {
+          range: undefined,
           title: 'Y Axis',
           showgrid: true,
         },
