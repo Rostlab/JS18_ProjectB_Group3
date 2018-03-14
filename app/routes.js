@@ -3,6 +3,7 @@ const ChartFactory = require('./helpers/chartFactory');
 const {
   defaultData: data, defaultLayout: layout,
   scatterData, scatterLayout,
+  histogramData, histogramLayout,
 } = require('../data/mockData');
 const _ = require('lodash');
 
@@ -26,6 +27,8 @@ module.exports = function (app) {
         chart.data = scatterData;
         break;
       case 'histogram':
+        chart.layout = histogramLayout;
+        chart.data = histogramData;
         break;
       case 'pie':
         break;
