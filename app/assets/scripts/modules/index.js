@@ -10,6 +10,8 @@ const changeScatterSymbol = require('./setScatterSymbol');
 const changeLegendPosition = require('./setLegendPosition');
 const changeLegendSize = require('./setLegendSize');
 const changeGridlinesColorAndWidth = require('./setGridlinesColorAndWidth');
+const changePieChartColor = require('./setPieChartColor');
+const changePieChartInfoType = require('./setPieChartInfoType');
 
 module.exports = exports = {
   changeTitle,
@@ -24,4 +26,6 @@ module.exports = exports = {
   changeLegendPosition,
   changeLegendSize,
   changeGridlinesColorAndWidth,
+  changePieChartColor,
+  changePieChartInfoType,
 };
