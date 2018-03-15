@@ -42,6 +42,16 @@ var regexes = [
     }
   },
   {
+    regex: /(change|set) position of legend to (.*),(.*)$/im,
+    command: 'changeLegendPosition',
+    arguments: (matches) => {
+      return {
+        newXValue: matches[2],
+        newYValue: matches[3]
+      };
+    }
+  },
+  {
     regex: /(.*?): (change|set) mode to (.*?)$/im,
     command: 'changeScatterConnectionLines',
     arguments: (matches) => {
@@ -91,6 +101,26 @@ var regexes = [
       return {
         name: matches[1],
         newValue: _.lowerCase(matches[3])
+      };
+    }
+  },
+  {
+    regex: /(change|set) size of legend to (.*?)$/im,
+    command: 'changeLegendSize',
+    arguments: (matches) => {
+      return {
+        newValue: matches[2]
+      };
+    }
+  },
+  {
+    regex: /(change|set) (color|width|size) of gridlines of (x|y)-axis to (.*?)$/im,
+    command: 'changeGridlinesColorAndWidth',
+    arguments: (matches) => {
+      return {
+        option: _.lowerCase(matches[2]),
+        axis: matches[3],
+        newValue: _.lowerCase(matches[4])
       };
     }
   },

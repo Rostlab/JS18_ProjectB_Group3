@@ -12,6 +12,12 @@ class Bar extends Chart {
       showgrid: layoutOptions &&
                 layoutOptions.xaxis &&
                 layoutOptions.xaxis.showgrid ? layoutOptions.xaxis.showgrid : true,
+      gridcolor: layoutOptions &&
+                 layoutOptions.xaxis &&
+                 layoutOptions.xaxis.gridcolor ? layoutOptions.xaxis.gridcolor : undefined,
+      gridwidth: layoutOptions &&
+                 layoutOptions.xaxis &&
+                 layoutOptions.xaxis.gridwidth ? layoutOptions.xaxis.gridwidth : undefined,
     };
     this.yaxis = {
       title: layoutOptions &&
@@ -20,6 +26,12 @@ class Bar extends Chart {
       showgrid: layoutOptions &&
                 layoutOptions.yaxis &&
                 layoutOptions.yaxis.showgrid ? layoutOptions.yaxis.showgrid : true,
+      gridcolor: layoutOptions &&
+                 layoutOptions.yaxis &&
+                 layoutOptions.yaxis.gridcolor ? layoutOptions.yaxis.gridcolor : undefined,
+      gridwidth: layoutOptions &&
+                 layoutOptions.yaxis &&
+                 layoutOptions.yaxis.gridwidth ? layoutOptions.yaxis.gridwidth : undefined,
     };
     // set data and layout for bar chart object
     this.data = data && data.length ? this.getData(data) : [];

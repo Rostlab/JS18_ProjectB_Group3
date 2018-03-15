@@ -14,6 +14,12 @@ class Scatter extends Chart {
       layoutOptions.xaxis.showgrid ? layoutOptions.xaxis.showgrid : true,
       range: layoutOptions &&
       layoutOptions.xaxis && layoutOptions.xaxis.range ? layoutOptions.xaxis.range : undefined,
+      gridcolor: layoutOptions &&
+                 layoutOptions.xaxis &&
+                 layoutOptions.xaxis.gridcolor ? layoutOptions.xaxis.gridcolor : undefined,
+      gridwidth: layoutOptions &&
+                 layoutOptions.xaxis &&
+                 layoutOptions.xaxis.gridwidth ? layoutOptions.xaxis.gridwidth : undefined,
     };
     this.yaxis = {
       title: layoutOptions &&
@@ -24,6 +30,12 @@ class Scatter extends Chart {
       layoutOptions.yaxis.showgrid ? layoutOptions.yaxis.showgrid : true,
       range: layoutOptions &&
       layoutOptions.yaxis && layoutOptions.yaxis.range ? layoutOptions.yaxis.range : undefined,
+      gridcolor: layoutOptions &&
+                 layoutOptions.yaxis &&
+                 layoutOptions.yaxis.gridcolor ? layoutOptions.yaxis.gridcolor : undefined,
+      gridwidth: layoutOptions &&
+                 layoutOptions.yaxis &&
+                 layoutOptions.yaxis.gridwidth ? layoutOptions.yaxis.gridwidth : undefined,
     };
     // set data and layout for bar chart object
     this.data = data && data.length ? this.getData(data) : [];

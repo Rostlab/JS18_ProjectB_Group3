@@ -68,11 +68,15 @@ describe('ChartFactory Tests', () => {
           range: undefined,
           title: 'X Axis',
           showgrid: true,
+          gridcolor: 'black',
+          gridwidth: 3,
         },
         yaxis: {
           range: undefined,
           title: 'Y Axis',
           showgrid: true,
+          gridcolor: 'black',
+          gridwidth: 3,
         },
         showlegend: true,
         legend: {
@@ -136,10 +140,14 @@ describe('ChartFactory Tests', () => {
         xaxis: {
           title: 'X Axis',
           showgrid: true,
+          gridcolor: 'black',
+          gridwidth: 3,
         },
         yaxis: {
           title: 'Y Axis',
           showgrid: true,
+          gridcolor: 'black',
+          gridwidth: 3,
         },
         showlegend: true,
         legend: {
