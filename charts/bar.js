@@ -46,7 +46,7 @@ class Bar extends Chart {
   getData(data) {
     const resp = [];
     _.each(data, (d) => {
-      const trace = new BarTrace(d.x, d.y, d.color, d.name);
+      const trace = new BarTrace(d.x, d.y, d.color, d.name, d.width);
       resp.push(trace.getTraceData());
     });
 

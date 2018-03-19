@@ -1,6 +1,7 @@
 const changeTitle = require('./setTitle');
 const changeScatterColorOrWidth = require('./setScatterColorOrWidth');
 const changeAxisTitle = require('./setAxisTitle');
+const changeBarWidth = require('./changeBarWidth');
 const changeAxisRange = require('./setAxisRange');
 const changeBinNumber = require('./setBinNumber');
 const changeScatterConnectionLines = require('./setScatterConnectionLines');
@@ -15,6 +16,7 @@ const changePieChartInfoType = require('./setPieChartInfoType');
 
 module.exports = exports = {
   changeTitle,
+  changeBarWidth,
   changeScatterColorOrWidth,
   changeAxisTitle,
   changeAxisRange,

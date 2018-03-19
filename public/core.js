@@ -57,7 +57,8 @@ function mainController($scope, $http) {
   var setTitle = '\n - set title to <new title>';
   var setXAxisTitle = '\n - change title of x-axis to <new title>';
   var setYAxisTitle = '\n - change title of y-axis to <new title>';
-  var setScatterLineThick = '\n - Trace1: set width of line to 10 (currently just for Scatter Plot)';
+  var setScatterLineThick = '\n - Trace1: set width of line to 10 (currently just for Scatter Plot)';  
+  var setBarWidth = '\n - change width of bar to <new width>';
   var setHistogramBinNumber = '\n - (change bin number) Trace1: set start,end,size of x to 0,20,0.5 (currently just for Histogram)';
   var setScatterConnectionLines = '\n - Trace1: set mode to lines (currently just for Scatter Plot)';
   var setScatterDashType = '\n - Trace1: set dash to dash (currently just for Scatter Plot)';
@@ -69,13 +70,15 @@ function mainController($scope, $http) {
   var setPieChartColor = '\n - set color to red,black,yellow';
   var setPieChartInfoType = '\n - set info type to value';
 
+
   function inputAlert() {
-    alert("Wront input! \n\nvalid inputs are: " +
+    alert("Wrong input! \n\nvalid inputs are: " +
       changeTitle +
       setTitle +
       setXAxisTitle +
       setYAxisTitle +
       setScatterLineThick +
+      setBarWidth +
       setHistogramBinNumber +
       setScatterConnectionLines +
       setScatterDashType +

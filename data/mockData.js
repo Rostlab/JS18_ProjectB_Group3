@@ -8,6 +8,7 @@ const trace1 = {
   y: [20, 14, 23],
   name: 'SF Zoo',
   type: 'bar',
+  width: 0.3,
 };
 
 const trace2 = {
@@ -15,6 +16,7 @@ const trace2 = {
   y: [12, 18, 29],
   name: 'LA Zoo',
   type: 'bar',
+  width: 0.3,
 };
 
 const defaultData = [trace1, trace2];

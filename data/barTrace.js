@@ -1,5 +1,5 @@
 class BarTrace {
-  constructor(x, y, color, name) {
+  constructor(x, y, color, name, width) {
     this.type = 'bar';
     this.x = x;
     this.y = y;
@@ -7,7 +7,7 @@ class BarTrace {
       color,
     };
     this.name = name;
-    this.width = undefined;
+    this.width = width;
   }
 
   /**
@@ -21,6 +21,7 @@ class BarTrace {
       y: this.y,
       name: this.name,
       marker: this.marker,
+      width: this.width,
     };
   }
 }
