@@ -64,7 +64,7 @@ class Bar extends Chart {
       xaxis: this.xaxis,
       yaxis: this.yaxis,
       showlegend: this.showlegend,
-      legend: this.legend
+      legend: this.legend,
     };
   }
 }

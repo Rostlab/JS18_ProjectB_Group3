@@ -29,7 +29,7 @@ describe('BarChart Tests', () => {
         color: 'red',
       },
       name: 'Trace 1',
-      width: 0.3
+      width: 0.3,
     };
     expect(barTrace.getTraceData()).to.deep.equal(testData);
   });
@@ -48,7 +48,7 @@ describe('BarChart Tests', () => {
       ],
       color: 'red',
       name: 'Trace 1',
-      width: 0.3
+      width: 0.3,
     };
     const layout = {
       title: 'Test Chart',
