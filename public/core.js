@@ -38,18 +38,15 @@ function mainController($scope, $http) {
         chart: $scope.chart
       })
       .success(function(chart) {
-        if (!chart.data || !chart.data.length) {
-          inputAlert();
-        } else {
-          $scope.chart.data = chart.data;
-          $scope.chart.layout = chart.layout;
-          // change newPlot to Plotly.restlye?
-          Plotly.newPlot('plot', chart.data, chart.layout);
-          $scope.command = '';
-        }
+        $scope.chart.data = chart.data;
+        $scope.chart.layout = chart.layout;
+        // change newPlot to Plotly.restlye?
+        Plotly.newPlot('plot', chart.data, chart.layout);
+        $scope.command = '';
       })
-      .error(function(data) {
-        console.log('Error: ' + data);
+      .error(function(err) {
+        console.log('Error: ' + err);
+        inputAlert();
       });
   };
 
@@ -66,7 +63,7 @@ function mainController($scope, $http) {
   var setScatterMarkerSymbol = '\n - Trace1: set symbol to dot (currently just for Scatter Plot)';
   var setLegendSize = '\n - set/change size of legend to <new size>';
   var setLegendPosition = '\n - change title of y-axis to <new position> (e.g. 1,1)';
-  var setYAxisGridlinesColor = '\n - Trace1: set color of gridlines of x-axis to 10';
+  var setXAxisGridlinesColor = '\n - Trace1: set color of gridlines of x-axis to red';
   var setPieChartColor = '\n - set color to red,black,yellow';
   var setPieChartInfoType = '\n - set info type to value';
 
@@ -86,7 +83,7 @@ function mainController($scope, $http) {
       setScatterMarkerSymbol +
       setLegendSize +
       setLegendPosition +
-      setYAxisGridlinesColor +
+      setXAxisGridlinesColor +
       setPieChartColor +
       setPieChartInfoType);
   }
