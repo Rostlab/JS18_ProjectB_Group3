@@ -103,7 +103,7 @@ describe('ChartFactory Tests', () => {
             color: 'red',
           },
           color: 'red',
-          width: 0.3
+          width: 0.3,
         },
         {
           type: 'bar',
@@ -122,7 +122,7 @@ describe('ChartFactory Tests', () => {
             color: 'blue',
           },
           color: 'blue',
-          width: 0.3
+          width: 0.3,
         },
       ],
       layout: {
