@@ -26,21 +26,23 @@ const randomlyRemoveDatapoints = (chart, params) => {
   // create the chart based on this type and the current chart properties (layout and data)
  
 
-  _.each(chart.data, (d) => {
-    let indexes = randomIndexes((1 - params.percentage) * d.x.length, d.x.length);
+  if(chart.data[0].type == 'scatter') {
+    _.each(chart.data, (d) => {
+      let indexes = randomIndexes((1 - params.percentage) * d.x.length, d.x.length);
 
-    let x_ = [], y_ = [];
+      let x_ = [], y_ = [];
 
-    for(let i of indexes) {
-      x_.unshift(d.x[i]);
-      y_.unshift(d.y[i]);
-    }
+      for(let i of indexes) {
+        x_.unshift(d.x[i]);
+        y_.unshift(d.y[i]);
+      }
 
-    console.log(params.percentage + ' percent');
+      console.log(params.percentage + ' percent');
 
-    d.x = x_;
-    d.y = y_;
-  });
+      d.x = x_;
+      d.y = y_;
+    });
+  }    
 
   const chartFactory = new ChartFactory();
   const editScatter = chartFactory.create(chart.data[0].type, chart);
