@@ -4,6 +4,7 @@ const {
   defaultData: data, defaultLayout: layout,
   scatterData, scatterLayout,
   histogramData, histogramLayout,
+  pieData, pieLayout,
 } = require('../data/mockData');
 const _ = require('lodash');
 
@@ -31,6 +32,8 @@ module.exports = function (app) {
         chart.data = histogramData;
         break;
       case 'pie':
+        chart.layout = pieLayout;
+        chart.data = pieData;
         break;
       default:
         chart.layout = layout;
@@ -53,6 +56,6 @@ module.exports = function (app) {
   });
 
   app.get('*', (req, res) => {
-    res.sendfile('./public/index.html');
+    res.sendFile('index.html', { root: '../public' });
   });
 };

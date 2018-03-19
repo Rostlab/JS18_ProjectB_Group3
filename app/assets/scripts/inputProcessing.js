@@ -114,6 +114,15 @@ var regexes = [
     }
   },
   {
+    regex: /^(change|set) color to (.*?)$/im,
+    command: 'changePieChartColor',
+    arguments: (matches) => {
+      return {
+        newValue: matches[2].split(',')
+      };
+    }
+  },
+  {
     regex: /(change|set) (color|width|size) of gridlines of (x|y)-axis to (.*?)$/im,
     command: 'changeGridlinesColorAndWidth',
     arguments: (matches) => {
@@ -121,6 +130,15 @@ var regexes = [
         option: _.lowerCase(matches[2]),
         axis: matches[3],
         newValue: _.lowerCase(matches[4])
+      };
+    }
+  },
+  {
+    regex: /^(change|set) info type to (.*?)$/im,
+    command: 'changePieChartInfoType',
+    arguments: (matches) => {
+      return {
+        newValue: matches[2]
       };
     }
   },

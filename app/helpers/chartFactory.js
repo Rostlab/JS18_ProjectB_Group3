@@ -2,6 +2,7 @@ const Charts = require('../../charts');
 const Bar = Charts.Bar;
 const Scatter = Charts.Scatter;
 const Histogram = Charts.Histogram;
+const Pie = Charts.Pie;
 
 class ChartFactory {
 
@@ -23,6 +24,7 @@ class ChartFactory {
         return new Histogram(chartProperties.layout, chartProperties.data);
         break;
       case 'pie':
+        return new Pie(chartProperties.layout, chartProperties.data);
         break;
       default:
         return new Bar(chartProperties.layout, chartProperties.data);

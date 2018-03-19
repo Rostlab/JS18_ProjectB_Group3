@@ -95,6 +95,21 @@ const histogramLayout = {
   title: 'Histogram',
 };
 
+/*
+* Mock data for pie chart
+*
+*/
+const pieData = [{
+  values: [19, 26, 55],
+  labels: ['Residential', 'Non-Residential', 'Utility'],
+  type: 'pie',
+}];
+
+const pieLayout = {
+  height: 400,
+  width: 500,
+};
+
 module.exports = {
   defaultData,
   defaultLayout,
@@ -102,4 +117,6 @@ module.exports = {
   scatterLayout,
   histogramData,
   histogramLayout,
+  pieData,
+  pieLayout,
 };

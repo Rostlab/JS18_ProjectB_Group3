@@ -38,8 +38,7 @@ function mainController($scope, $http) {
         chart: $scope.chart
       })
       .success(function(chart) {
-        //console.log(chart);
-        if (!chart.title) {
+        if (!chart.data || !chart.data.length) {
           inputAlert();
         } else {
           $scope.chart.data = chart.data;
@@ -67,6 +66,8 @@ function mainController($scope, $http) {
   var setLegendSize = '\n - set/change size of legend to <new size>';
   var setLegendPosition = '\n - change title of y-axis to <new position> (e.g. 1,1)';
   var setYAxisGridlinesColor = '\n - Trace1: set color of gridlines of x-axis to 10';
+  var setPieChartColor = '\n - set color to red,black,yellow';
+  var setPieChartInfoType = '\n - set info type to value';
 
   function inputAlert() {
     alert("Wront input! \n\nvalid inputs are: " +
@@ -82,6 +83,8 @@ function mainController($scope, $http) {
       setScatterMarkerSymbol +
       setLegendSize +
       setLegendPosition +
-      setYAxisGridlinesColor);
+      setYAxisGridlinesColor +
+      setPieChartColor +
+      setPieChartInfoType);
   }
 }
