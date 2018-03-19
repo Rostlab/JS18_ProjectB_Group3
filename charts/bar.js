@@ -52,8 +52,7 @@ class Bar extends Chart {
       xaxis: this.xaxis,
       yaxis: this.yaxis,
       showlegend: this.showlegend,
-      legend: this.legend,
-      width: this.width,
+      legend: this.legend
     };
   }
 }

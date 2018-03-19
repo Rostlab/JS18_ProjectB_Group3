@@ -14,10 +14,11 @@ describe('BarChart Tests', () => {
       14,
       23,
     ];
-    const barTrace = new BarTrace(x, y, 'red', 'Trace 1');
+    const barTrace = new BarTrace(x, y, 'red', 'Trace 1', 0.3);
     expect(barTrace.type).to.equal('bar');
     expect(barTrace.x).to.have.lengthOf(3);
     expect(barTrace.y).to.have.lengthOf(3);
+    expect(barTrace.width).to.equal(0.3);
     expect(barTrace.marker.color).to.equal('red');
     expect(barTrace.name).to.equal('Trace 1');
     const testData = {
@@ -28,6 +29,7 @@ describe('BarChart Tests', () => {
         color: 'red',
       },
       name: 'Trace 1',
+      width: 0.3
     };
     expect(barTrace.getTraceData()).to.deep.equal(testData);
   });
@@ -46,9 +48,11 @@ describe('BarChart Tests', () => {
       ],
       color: 'red',
       name: 'Trace 1',
+      width: 0.3
     };
     const layout = {
       title: 'Test Chart',
+
       xaxis: {
         title: 'X Axis',
         showgrid: true,
@@ -69,6 +73,7 @@ describe('BarChart Tests', () => {
     const testBarChart = new Bar(layout, [trace]);
     const testData = [{
       type: 'bar',
+
       x: [
         'giraffes',
         'orangutans',
@@ -82,8 +87,10 @@ describe('BarChart Tests', () => {
       marker: {
         color: 'red',
       },
+      width: 0.3,
       name: 'Trace 1',
     }];
+    console.log(testBarChart.layout);
     expect(testBarChart.layout).to.deep.equal(layout);
     expect(testBarChart.data).to.deep.equal(testData);
   });
