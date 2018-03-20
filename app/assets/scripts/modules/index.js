@@ -1,5 +1,6 @@
 const changeTitle = require('./setTitle');
-const changeScatterColorOrWidth = require('./setScatterColorOrWidth');
+const changeScatterColor = require('./setScatterColor');
+const changeScatterSize = require('./setScatterSize');
 const changeAxisTitle = require('./setAxisTitle');
 const changeBarWidth = require('./changeBarWidth');
 const changeAxisRange = require('./setAxisRange');
@@ -10,14 +11,16 @@ const changeScatterMarkerOpacity = require('./setScatterMarkerOpacity');
 const changeScatterSymbol = require('./setScatterSymbol');
 const changeLegendPosition = require('./setLegendPosition');
 const changeLegendSize = require('./setLegendSize');
-const changeGridlinesColorAndWidth = require('./setGridlinesColorAndWidth');
+const changeGridlinesColor = require('./setGridlinesColor');
+const changeGridlinesSize = require('./setGridlinesSize');
 const changePieChartColor = require('./setPieChartColor');
 const changePieChartInfoType = require('./setPieChartInfoType');
 
 module.exports = exports = {
   changeTitle,
   changeBarWidth,
-  changeScatterColorOrWidth,
+  changeScatterColor,
+  changeScatterSize,
   changeAxisTitle,
   changeAxisRange,
   changeBinNumber,
@@ -27,7 +30,8 @@ module.exports = exports = {
   changeScatterSymbol,
   changeLegendPosition,
   changeLegendSize,
-  changeGridlinesColorAndWidth,
+  changeGridlinesColor,
+  changeGridlinesSize,
   changePieChartColor,
   changePieChartInfoType,
 };

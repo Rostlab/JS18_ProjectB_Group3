@@ -5,16 +5,16 @@ class ScatterTrace {
     this.x = options.x;
     this.y = options.y;
     this.marker = {
-      opacity: options.marker && options.marker.opacity ? options.marker.opacity : undefined,
-      symbol: options.marker && options.marker.symbol ? options.marker.symbol : undefined,
-      color: options.marker && options.marker.color ? options.marker.color : undefined,
-      size: options.marker && options.marker.size ? options.marker.size : undefined,
+      opacity: options.marker && options.marker.opacity ? options.marker.opacity : '',
+      symbol: options.marker && options.marker.symbol ? options.marker.symbol : '',
+      color: options.marker && options.marker.color ? options.marker.color : '',
+      size: options.marker && options.marker.size ? options.marker.size : '',
     };
     this.name = options.name;
     this.line = {
-      dash: options.line && options.line.dash ? options.line.dash : undefined,
-      color: options.line && options.line.color ? options.line.color : undefined,
-      width: options.line && options.line.width ? options.line.width : undefined,
+      dash: options.line && options.line.dash ? options.line.dash : '',
+      color: options.line && options.line.color ? options.line.color : '',
+      width: options.line && options.line.width ? options.line.width : '',
     };
   }
 

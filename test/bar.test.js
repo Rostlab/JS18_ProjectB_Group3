@@ -94,7 +94,6 @@ describe('BarChart Tests', () => {
       width: 0.3,
       name: 'Trace 1',
     }];
-    console.log(testBarChart.layout);
     expect(testBarChart.layout).to.deep.equal(layout);
     expect(testBarChart.data).to.deep.equal(testData);
   });

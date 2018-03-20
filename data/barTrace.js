@@ -4,10 +4,10 @@ class BarTrace {
     this.x = x;
     this.y = y;
     this.marker = {
-      color,
+      color: color || '',
     };
     this.name = name;
-    this.width = width;
+    this.width = width || '';
   }
 
   /**

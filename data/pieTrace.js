@@ -3,11 +3,11 @@ class PieTrace {
     this.type = 'pie';
     this.values = options.values;
     this.labels = options.labels;
-    this.hoverinfo = options.hoverinfo;
-    this.textinfo = options.textinfo;
+    this.hoverinfo = options.hoverinfo ? options.hoverinfo : 'percent';
+    this.textinfo = options.textinfo ? options.textinfo : 'percent';
     this.name = options.name;
     this.marker = {
-      colors: options.marker && options.marker.colors ? options.marker.colors : undefined,
+      colors: options.marker && options.marker.colors ? options.marker.colors : '',
     };
   }
 

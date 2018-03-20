@@ -5,13 +5,10 @@ const ChartFactory = require('../../../helpers/chartFactory');
 const _  = require('lodash');
 
 const setBarWidth = (chart, params) => {
- return chart;
   _.each(chart.data, (d) => {
     d.width = params.newBarWidth;
-    console.log(params.newBarWidth);
   });
 
-  
   const chartFactory = new ChartFactory();
   const editBar = chartFactory.create(chart.data[0].type, chart);
   

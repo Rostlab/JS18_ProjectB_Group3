@@ -48,18 +48,18 @@ describe('HistogramChart Tests', () => {
       name: 'Trace1',
       autobinx: true,
       marker: {
-        color: undefined,
+        color: '',
       },
       type: 'histogram',
       xbins: {
-        end: undefined,
-        size: undefined,
-        start: undefined,
+        end: '',
+        size: '',
+        start: '',
       },
       ybins: {
-        end: undefined,
-        size: undefined,
-        start: undefined,
+        end: '',
+        size: '',
+        start: '',
       },
     };
 
@@ -69,18 +69,18 @@ describe('HistogramChart Tests', () => {
       name: 'Trace2',
       autobinx: true,
       marker: {
-        color: undefined,
+        color: '',
       },
       type: 'histogram',
       xbins: {
-        end: undefined,
-        size: undefined,
-        start: undefined,
+        end: '',
+        size: '',
+        start: '',
       },
       ybins: {
-        end: undefined,
-        size: undefined,
-        start: undefined,
+        end: '',
+        size: '',
+        start: '',
       },
     };
     const histogramData = [histogramTrace1, histogramTrace2];
@@ -97,14 +97,18 @@ describe('HistogramChart Tests', () => {
       },
       showlegend: true,
       xaxis: {
-        range: undefined,
+        range: '',
         showgrid: true,
         title: 'X Axis',
+        gridcolor: '',
+        gridwidth: '',
       },
       yaxis: {
-        range: undefined,
+        range: '',
         showgrid: true,
         title: 'Y Axis',
+        gridcolor: '',
+        gridwidth: '',
       },
 
     };

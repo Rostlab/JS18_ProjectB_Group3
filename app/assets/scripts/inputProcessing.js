@@ -13,22 +13,10 @@ var regexes = [
     }
   },
   {
-    regex: /^change title of (x|y)-axis to (.*?)$/im,
+    regex: /^(change|set) title of (x|y)-axis to (.*?)$/im,
     command: 'changeAxisTitle',
     arguments: function(matches) {
-      return {axis: matches[1], newTitle: matches[2]};
-    }
-  },
-  {
-    regex: /(.*?): (change|set) (color|width|size) of (dot|line) to (.*?)$/im,
-    command: 'changeScatterColorOrWidth',
-    arguments: (matches) => {
-      return {
-        name: matches[1],
-        option: _.lowerCase(matches[3]),
-        attribute: _.lowerCase(matches[4]),
-        newValue: _.lowerCase(matches[5])
-      };
+      return {axis: matches[2], newTitle: matches[3]};
     }
   },
   {
@@ -55,6 +43,28 @@ var regexes = [
       return {
         newXValue: matches[2],
         newYValue: matches[3]
+      };
+    }
+  },
+  {
+    regex: /(.*?): (change|set) color of (dot|line) to (.*?)$/im,
+    command: 'changeScatterColor',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        attribute: _.lowerCase(matches[3]),
+        newValue: _.lowerCase(matches[4])
+      };
+    }
+  },
+  {
+    regex: /(.*?): (change|set) (width|size) of (dot|line) to (.*?)$/im,
+    command: 'changeScatterSize',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        attribute: _.lowerCase(matches[4]),
+        newValue: matches[5]
       };
     }
   },
@@ -97,7 +107,7 @@ var regexes = [
     arguments: (matches) => {
       return {
         name: matches[1],
-        newValue: _.lowerCase(matches[3])
+        newValue: matches[3]
       };
     }
   },
@@ -130,13 +140,22 @@ var regexes = [
     }
   },
   {
-    regex: /(change|set) (color|width|size) of gridlines of (x|y)-axis to (.*?)$/im,
-    command: 'changeGridlinesColorAndWidth',
+    regex: /^(change|set) color of gridlines of (x|y)-axis to (.*?)$/im,
+    command: 'changeGridlinesColor',
     arguments: (matches) => {
       return {
-        option: _.lowerCase(matches[2]),
+        axis: matches[2],
+        newValue: _.lowerCase(matches[3])
+      };
+    }
+  },
+  {
+    regex: /^(change|set) (width|size) of gridlines of (x|y)-axis to (.*?)$/im,
+    command: 'changeGridlinesSize',
+    arguments: (matches) => {
+      return {
         axis: matches[3],
-        newValue: _.lowerCase(matches[4])
+        newValue: matches[4]
       };
     }
   },
