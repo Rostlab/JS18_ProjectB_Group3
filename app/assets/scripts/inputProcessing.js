@@ -152,18 +152,19 @@ var regexes = [
 ];
 
 // processes the nlp input
-function process(input, data){
+function process(input, data, callback){
 
   for(let rule of regexes) {
 
     if(rule.regex.test(input)) {
       // NO default rule yet, instantiates empty chart if null match
-      console.log(rule.regex.exec(input));
-      return modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
+      let calculatedChart = modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
+      callback(null, _.pick(calculatedChart, ['data', 'layout']));
+      return;
     }
   }
 
-  return false;
+  return callback(new Error('Command not found'));
 };
 
 
