@@ -4,20 +4,20 @@ class HistogramTrace {
     this.x = options.x;
     this.y = options.y;
     this.marker = {
-      color: options.marker && options.marker.color ? options.marker.color : undefined,
+      color: options.marker && options.marker.color ? options.marker.color : '',
     };
     this.name = options.name;
     this.autobinx = Object.prototype.hasOwnProperty.call(options, 'autobinx') ? options.autobinx : true;
     this.autobiny = Object.prototype.hasOwnProperty.call(options, 'autobiny') ? options.autobiny : true;
     this.xbins = {
-      start: options.xbins && options.xbins.start ? options.xbins.start : undefined,
-      end: options.xbins && options.xbins.end ? options.xbins.end : undefined,
-      size: options.xbins && options.xbins.size ? options.xbins.size : undefined,
+      start: options.xbins && options.xbins.start ? options.xbins.start : '',
+      end: options.xbins && options.xbins.end ? options.xbins.end : '',
+      size: options.xbins && options.xbins.size ? options.xbins.size : '',
     };
     this.ybins = {
-      start: options.ybins && options.ybins.start ? options.ybins.start : undefined,
-      end: options.ybins && options.ybins.end ? options.ybins.end : undefined,
-      size: options.ybins && options.ybins.size ? options.ybins.size : undefined,
+      start: options.ybins && options.ybins.start ? options.ybins.start : '',
+      end: options.ybins && options.ybins.end ? options.ybins.end : '',
+      size: options.ybins && options.ybins.size ? options.ybins.size : '',
     };
   }
 

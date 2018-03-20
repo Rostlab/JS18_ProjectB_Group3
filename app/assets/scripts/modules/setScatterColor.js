@@ -4,21 +4,13 @@
 const ChartFactory = require('../../../helpers/chartFactory');
 const _  = require('lodash');
 
-const setScatterColorOrWidth = (chart, params) => {
+const setScatterColor = (chart, params) => {
   _.each(chart.data, (d) => {
     if (d.name === params.name) {
       if (params.attribute === 'dot') {
-        if (params.option === 'color') {
-          d.marker.color = params.newValue
-        } else {
-          d.marker.size = params.newValue
-        }
+        d.marker.color = params.newValue;
       } else {
-        if (params.option === 'color') {
-          d.line.color = params.newValue
-        } else {
-          d.line.width = params.newValue
-        }
+        d.line.color = params.newValue;
       }
     }
   });
@@ -30,4 +22,4 @@ const setScatterColorOrWidth = (chart, params) => {
   return editScatter;
 };
 
-module.exports = setScatterColorOrWidth;
+module.exports = setScatterColor;
