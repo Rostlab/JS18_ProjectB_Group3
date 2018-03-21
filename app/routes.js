@@ -4,7 +4,7 @@ const {
   defaultData: data, defaultLayout: layout,
   scatterData, scatterLayout,
   histogramData, histogramLayout,
-  pieData, pieLayout,
+  pieData, pieLayout, barData2, barLayout2,
 } = require('../data/mockData');
 const _ = require('lodash');
 
@@ -17,7 +17,7 @@ module.exports = function (app) {
       layout: undefined,
       data: undefined,
     };
-    const selectedExample = _.lowerCase(req.query.example);
+    let selectedExample = _.lowerCase(req.query.example);
     switch (selectedExample) {
       case 'bar':
         chart.layout = layout;
@@ -34,6 +34,11 @@ module.exports = function (app) {
       case 'pie':
         chart.layout = pieLayout;
         chart.data = pieData;
+        break;
+      case 'average':
+        chart.layout = barLayout2;
+        chart.data = barData2;
+        selectedExample = 'scatter';
         break;
       default:
         chart.layout = layout;

@@ -15,6 +15,7 @@ const changeGridlinesColor = require('./setGridlinesColor');
 const changeGridlinesSize = require('./setGridlinesSize');
 const changePieChartColor = require('./setPieChartColor');
 const changePieChartInfoType = require('./setPieChartInfoType');
+const calculateAverage = require('./calculateAverage');
 
 module.exports = exports = {
   changeTitle,
@@ -34,4 +35,5 @@ module.exports = exports = {
   changeGridlinesSize,
   changePieChartColor,
   changePieChartInfoType,
+  calculateAverage,
 };
