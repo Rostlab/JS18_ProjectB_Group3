@@ -4,10 +4,14 @@
 const ChartFactory = require('../../../helpers/chartFactory');
 
 const setAxisRange = (chart, params) => {
-  if(params.axis === 'x'){
-    chart.layout['xaxis'].range = params.newValue;
-  } else {
-    chart.layout['yaxis'].range = params.newValue;
+  try{
+    if(params.axis === 'x'){
+      chart.layout['xaxis'].range = params.newValue;
+    } else {
+      chart.layout['yaxis'].range = params.newValue;
+    }
+  } catch (error) {
+    return error;
   }
   const chartFactory = new ChartFactory();
   const editHistogram = chartFactory.create(chart.data[0].type, chart);
