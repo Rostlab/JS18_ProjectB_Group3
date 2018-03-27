@@ -4,7 +4,11 @@
 const ChartFactory = require('../../../helpers/chartFactory');
 
 const setTitle = (chart, params) => {
-  chart.layout['title'] = params.newTitle;
+  try{
+    chart.layout['title'] = params.newTitle;
+  } catch (error) {
+    return error;
+  }
   const chartFactory = new ChartFactory();
   const editBar = chartFactory.create(chart.data[0].type, chart);
 

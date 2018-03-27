@@ -103,14 +103,14 @@ describe('ScatterChart Tests', () => {
       xaxis: {
         gridcolor: '',
         gridwidth: '',
-        range: '',
+        range: [],
         title: 'X Axis',
         showgrid: true,
       },
       yaxis: {
         gridcolor: '',
         gridwidth: '',
-        range: '',
+        range: [],
         title: 'Y Axis',
         showgrid: true,
       },

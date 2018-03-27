@@ -5,15 +5,19 @@ const ChartFactory = require('../../../helpers/chartFactory');
 const _  = require('lodash');
 
 const setScatterSize = (chart, params) => {
-  _.each(chart.data, (d) => {
-    if (d.name === params.name) {
-      if (params.attribute === 'dot') {
-        d.marker.size = params.newValue;
-      } else {
-        d.line.width = params.newValue;
+  try{
+    _.each(chart.data, (d) => {
+      if (d.name === params.name) {
+        if (params.attribute === 'dot') {
+          d.marker.size = params.newValue;
+        } else {
+          d.line.width = params.newValue;
+        }
       }
-    }
-  });
+    });
+  } catch (error) {
+    return error;
+  }
   // get type from the first data element
   // create the chart based on this type and the current chart properties (layout and data)
   const chartFactory = new ChartFactory();

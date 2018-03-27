@@ -97,14 +97,14 @@ describe('HistogramChart Tests', () => {
       },
       showlegend: true,
       xaxis: {
-        range: '',
+        range: [],
         showgrid: true,
         title: 'X Axis',
         gridcolor: '',
         gridwidth: '',
       },
       yaxis: {
-        range: '',
+        range: [],
         showgrid: true,
         title: 'Y Axis',
         gridcolor: '',

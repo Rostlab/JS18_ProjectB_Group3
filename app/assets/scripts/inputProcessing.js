@@ -3,6 +3,7 @@
 */
 const _ = require('lodash');
 const modules = require('./modules');
+const ChartFactory = require('../../helpers/chartFactory');
 
 var regexes = [
   {
@@ -171,13 +172,45 @@ var regexes = [
 ];
 
 // processes the nlp input
-function process(input, data, callback){
+function process(input, plotlyObject, callback){
+  if (!_.isString(input) || input === '') {
+    const invalidCommand = new Error('Invalid command');
+    callback(invalidCommand, null);
+    return;
+  }
+  if (!Object.prototype.hasOwnProperty.call(plotlyObject, 'data') ||
+    !Object.prototype.hasOwnProperty.call(plotlyObject, 'layout')) {
+    const missingChartProperty = new Error('Data or layout missing');
+    callback(missingChartProperty, null);
+    return;
+  }
+  if (_.isEmpty(plotlyObject.data)) {
+    const invalidDataProperty = new Error('Data array cant be empty');
+    callback(invalidDataProperty, null);
+    return;
+  }
+  if (_.isEmpty(plotlyObject.layout)) {
+    const invalidLayoutProperty = new Error('Layout cant be empty');
+    callback(invalidLayoutProperty, null);
+    return;
+  }
+  if (!plotlyObject.data[0].type || plotlyObject.data[0].type === '') {
+    const invalidChartType = new Error('Invalid chart type');
+    callback(invalidChartType, null);
+    return;
+  }
+
+  const chartFactory = new ChartFactory();
+  const chart = chartFactory.create(plotlyObject.data[0].type, plotlyObject);
 
   for(let rule of regexes) {
-
     if(rule.regex.test(input)) {
       // NO default rule yet, instantiates empty chart if null match
-      let calculatedChart = modules[rule.command](data, rule.arguments(rule.regex.exec(input)));
+      let calculatedChart = modules[rule.command](chart, rule.arguments(rule.regex.exec(input)));
+      if (calculatedChart instanceof Error) {
+        callback(calculatedChart);
+        return;
+      }
       callback(null, _.pick(calculatedChart, ['data', 'layout']));
       return;
     }

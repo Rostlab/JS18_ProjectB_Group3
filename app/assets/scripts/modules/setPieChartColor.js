@@ -4,12 +4,16 @@
 const ChartFactory = require('../../../helpers/chartFactory');
 
 const setPieChartColor = (chart, params) => {
-  if (chart.data[0].marker) {
-    chart.data[0].marker['colors'] = params.newValue;
-  } else {
-    chart.data[0].marker = {
-      colors: params.newValue
-    };
+  try{
+    if (chart.data[0].marker) {
+      chart.data[0].marker['colors'] = params.newValue;
+    } else {
+      chart.data[0].marker = {
+        colors: params.newValue
+      };
+    }
+  } catch (error) {
+    return error;
   }
   const chartFactory = new ChartFactory();
   const editPie = chartFactory.create(chart.data[0].type, chart);

@@ -65,14 +65,14 @@ describe('ChartFactory Tests', () => {
       layout: {
         title: 'Scatter Plot',
         xaxis: {
-          range: '',
+          range: [],
           title: 'X Axis',
           showgrid: true,
           gridcolor: 'black',
           gridwidth: 3,
         },
         yaxis: {
-          range: '',
+          range: [],
           title: 'Y Axis',
           showgrid: true,
           gridcolor: 'black',
@@ -169,5 +169,96 @@ describe('ChartFactory Tests', () => {
     expect(barChart.constructor.name).to.equal('Bar');
     expect(barChart.data).to.deep.equal(chart.data);
     expect(barChart.layout).to.deep.equal(chart.layout);
+  });
+
+  it('expects a Histogram Chart object', () => {
+    const x1 = [];
+    const y1 = [];
+    for (let i = 1; i < 500; i += 1) {
+      const k = Math.random();
+      x1.push(k * 5);
+      y1.push(k);
+    }
+
+    const chart = {
+      data: [
+        {
+          x: x1,
+          y: y1,
+          name: 'Trace1',
+          autobinx: true,
+          type: 'histogram',
+          marker: {
+            color: '',
+          },
+          xbins: {
+            end: '',
+            size: '',
+            start: '',
+          },
+          ybins: {
+            end: '',
+            size: '',
+            start: '',
+          },
+        },
+      ],
+      layout: {
+        barmode: 'overlay',
+        legend: {
+          font: {
+            size: 12,
+          },
+          x: 1,
+          y: 1,
+        },
+        showlegend: true,
+        title: 'Histogram',
+        xaxis: {
+          gridcolor: '',
+          gridwidth: '',
+          range: [],
+          showgrid: true,
+          title: 'X Axis',
+        },
+        yaxis: {
+          gridcolor: '',
+          gridwidth: '',
+          range: [],
+          showgrid: true,
+          title: 'Y Axis',
+        },
+      },
+    };
+    const chartFactory = new ChartFactory();
+    const histogramChart = chartFactory.create(chart.data[0].type, chart);
+    expect(histogramChart.constructor.name).to.equal('Histogram');
+    expect(histogramChart.data).to.deep.equal(chart.data);
+    expect(histogramChart.layout).to.deep.equal(chart.layout);
+  });
+
+  it('expects a Pie Chart object', () => {
+    const chart = {
+      data: [{
+        values: [19, 26, 55],
+        labels: ['Residential', 'Non-Residential', 'Utility'],
+        type: 'pie',
+        marker: {
+          colors: ['red', 'black', 'yellow'],
+        },
+        name: 'Test',
+        textinfo: 'value',
+        hoverinfo: 'value',
+      }],
+      layout: {
+        height: 400,
+        width: 500,
+      },
+    };
+    const chartFactory = new ChartFactory();
+    const pieChart = chartFactory.create(chart.data[0].type, chart);
+    expect(pieChart.constructor.name).to.equal('Pie');
+    expect(pieChart.data).to.deep.equal(chart.data);
+    expect(pieChart.layout).to.deep.equal(chart.layout);
   });
 });
