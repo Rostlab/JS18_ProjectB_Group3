@@ -2,7 +2,7 @@ var plotGraph = angular.module('plotGraph', []);
 
 function mainController($scope, $http) {
   $scope.command = '';
-  $scope.examples = ['Bar', 'Scatter', 'Histogram', 'Pie'];
+  $scope.examples = ['Bar', 'Scatter', 'Histogram', 'Pie', 'Average'];
   // save the current chart object and send it with the command in the post request
   $scope.chart = {
     data: undefined,

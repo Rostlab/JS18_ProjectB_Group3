@@ -1,4 +1,8 @@
-const { assert, expect } = require('chai');
+const chai = require('chai');
+const dirtyChai = require('dirty-chai');
+
+const { assert, expect } = chai;
+chai.use(dirtyChai);
 const inputProcessing = require('../app/assets/scripts/inputProcessing');
 
 const barChart = {
@@ -331,6 +335,42 @@ describe('Input Processing Tests', () => {
       assert.exists(result);
       expect(result.data[0].hoverinfo).to.equal('percent');
       expect(result.data[0].textinfo).to.equal('percent');
+      done();
+    });
+  });
+  it('expects to calculate average pay rate for each gender', (done) => {
+    const chart = {
+      data: [
+        {
+          type: 'scatter',
+          x: ['Male', 'Male', 'Male', 'Male', 'Female', 'Female', 'Female', 'Female'],
+          y: [16, 18, 14, 10, 40, 42, 32, 28],
+          name: 'Trace1',
+          mode: 'markers',
+        },
+      ],
+      layout: {
+        title: 'Average Pay Rate',
+        showlegend: true,
+        xaxis: {
+          title: 'Gender',
+        },
+        yaxis: {
+          title: 'Pay Rate',
+        },
+      },
+    };
+    inputProcessing.process('Trace1: plot average Pay Rate of Gender', chart, (error, result) => {
+      assert.notExists(error);
+      assert.exists(result);
+      expect(result.data[0].type).to.equal('bar');
+      expect(result.data[0].name).to.equal('Trace1');
+      expect(result.layout.title).to.deep.equal('Average Pay Rate');
+      expect(result.layout.showlegend).to.be.true();
+      expect(result.layout.xaxis.title).to.deep.equal('Gender');
+      expect(result.layout.yaxis.title).to.deep.equal('Pay Rate');
+      expect(result.data[0].x).to.deep.equal(['Male', 'Female']);
+      expect(result.data[0].y).to.deep.equal([14.5, 35.5]);
       done();
     });
   });

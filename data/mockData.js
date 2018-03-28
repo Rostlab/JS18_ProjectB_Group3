@@ -95,6 +95,29 @@ const pieLayout = {
   width: 500,
 };
 
+/*
+* Mock data for calculating average value
+*
+*/
+
+const barData2 = [{
+  x: ['Male', 'Male', 'Male', 'Male', 'Female', 'Female', 'Female', 'Female'],
+  y: [16, 18, 14, 10, 40, 42, 32, 28],
+  name: 'Trace1',
+  mode: 'markers',
+}];
+
+const barLayout2 = {
+  title: 'Average Pay Rate',
+  showlegend: true,
+  xaxis: {
+    title: 'Gender',
+  },
+  yaxis: {
+    title: 'Pay Rate',
+  },
+};
+
 module.exports = {
   defaultData,
   defaultLayout,
@@ -104,4 +127,6 @@ module.exports = {
   histogramLayout,
   pieData,
   pieLayout,
+  barData2,
+  barLayout2,
 };

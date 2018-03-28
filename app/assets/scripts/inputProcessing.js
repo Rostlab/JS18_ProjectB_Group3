@@ -169,6 +169,16 @@ var regexes = [
       };
     }
   },
+  {
+    regex: /^(.*?): plot average (.*?) of (.*?)$/im,
+    command: 'calculateAverage',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        groupAxisName: matches[3]
+      };
+    }
+  },
 ];
 
 // processes the nlp input
