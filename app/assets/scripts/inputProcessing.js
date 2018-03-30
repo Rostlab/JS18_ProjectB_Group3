@@ -48,7 +48,7 @@ var regexes = [
     }
   },
   {
-    regex: /(.*?): (change|set) color of (dot|line) to (.*?)$/im,
+    regex: /(.*?): (change|set) color of (marker|line) to (.*?)$/im,
     command: 'changeScatterColor',
     arguments: (matches) => {
       return {
@@ -59,7 +59,7 @@ var regexes = [
     }
   },
   {
-    regex: /(.*?): (change|set) (width|size) of (dot|line) to (.*?)$/im,
+    regex: /(.*?): (change|set) (width|size) of (marker|line) to (.*?)$/im,
     command: 'changeScatterSize',
     arguments: (matches) => {
       return {
@@ -90,7 +90,7 @@ var regexes = [
     }
   },
   {
-    regex: /(.*?): (change|set) start,end,size of (x|y) to (.*),(.*),(.*)$/im,
+    regex: /(.*?): (change|set) start,end,size of (x|y)-axis to (.*),(.*),(.*)$/im,
     command: 'changeBinNumber',
     arguments: (matches) => {
       return {

@@ -8,7 +8,7 @@ const setScatterColor = (chart, params) => {
   try{
     _.each(chart.data, (d) => {
       if (d.name === params.name) {
-        if (params.attribute === 'dot') {
+        if (params.attribute === 'marker') {
           d.marker.color = params.newValue;
         } else {
           d.line.color = params.newValue;
