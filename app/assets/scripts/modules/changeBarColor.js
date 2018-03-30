@@ -7,8 +7,9 @@ const _  = require('lodash');
 const changeBarColor = (chart, params) => {
   try{
     _.each(chart.data, (d) => {
-      if(d.name === params.name)
-      d.color = params.newBarColor;
+      if(d.name === params.name) {
+        d.color = params.newBarColor;
+      }
     });
   } catch (error) {
     return error;
