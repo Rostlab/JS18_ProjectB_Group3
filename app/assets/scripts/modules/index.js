@@ -3,6 +3,7 @@ const changeScatterColor = require('./setScatterColor');
 const changeScatterSize = require('./setScatterSize');
 const changeAxisTitle = require('./setAxisTitle');
 const changeBarWidth = require('./changeBarWidth');
+const changeBarColor = require('./changeBarColor');
 const changeAxisRange = require('./setAxisRange');
 const changeBinNumber = require('./setBinNumber');
 const changeScatterConnectionLines = require('./setScatterConnectionLines');
@@ -20,6 +21,7 @@ const calculateAverage = require('./calculateAverage');
 module.exports = exports = {
   changeTitle,
   changeBarWidth,
+  changeBarColor,
   changeScatterColor,
   changeScatterSize,
   changeAxisTitle,
