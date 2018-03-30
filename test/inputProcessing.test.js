@@ -108,6 +108,25 @@ const pieChart = {
   },
 };
 
+const x = [];
+const y = [];
+for (let i = 1; i < 100; i += 1) {
+  const k = Math.random();
+  x.push(k * 5);
+  y.push(k);
+}
+const histogram = {
+  data: [{
+    type: 'histogram',
+    name: 'Trace1',
+    x,
+    y,
+  }],
+  layout: {
+    title: 'Histogram',
+  },
+};
+
 describe('Input Processing Tests', () => {
   it('expects invalid command error', (done) => {
     inputProcessing.process('', {}, (error, result) => {
@@ -233,7 +252,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set size of marker to 6', (done) => {
-    inputProcessing.process('Trace1: set width of dot to 6', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1: set width of marker to 6', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.size).to.equal('6');
@@ -241,7 +260,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of marker to green', (done) => {
-    inputProcessing.process('Trace1: set color of dot to green', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1: set color of marker to green', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.color).to.equal('green');
@@ -371,6 +390,19 @@ describe('Input Processing Tests', () => {
       expect(result.layout.yaxis.title).to.deep.equal('Pay Rate');
       expect(result.data[0].x).to.deep.equal(['Male', 'Female']);
       expect(result.data[0].y).to.deep.equal([14.5, 35.5]);
+      done();
+    });
+  });
+  it('expects to set bin numbers of histogram', (done) => {
+    inputProcessing.process('Trace1: set start,end,size of x-axis to 0,100,0.5', histogram, (error, result) => {
+      assert.notExists(error);
+      assert.exists(result);
+      expect(result.data[0].autobinx).to.be.false();
+      expect(result.data[0].xbins).to.deep.equal({
+        start: '0',
+        end: '100',
+        size: '0.5',
+      });
       done();
     });
   });
