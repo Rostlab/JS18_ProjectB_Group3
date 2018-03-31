@@ -79,7 +79,7 @@ describe('Integration Tests', () => {
     const layout = {
       title: 'group',
     };
-    graphAPI.editChart('set title to Test', { data, layout }, (error, result) => {
+    graphAPI.editChart('set title to "Test"', { data, layout }, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.title).to.equal('Test');
