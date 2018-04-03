@@ -210,7 +210,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set range of x-axis to 0,100', (done) => {
-    inputProcessing.process('set range of x-axis to "0,100"', scatterPlot, (error, result) => {
+    inputProcessing.process('set range of x-axis to 0,100', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.xaxis.range[0]).to.equal('0');
@@ -219,7 +219,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set range of y-axis to 0,120', (done) => {
-    inputProcessing.process('set range of y-axis to "0,120"', scatterPlot, (error, result) => {
+    inputProcessing.process('set range of y-axis to 0,120', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.yaxis.range[0]).to.equal('0');
@@ -228,7 +228,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set width of bar to 10', (done) => {
-    inputProcessing.process('set width of bar to "10"', barChart, (error, result) => {
+    inputProcessing.process('set width of bar to 10', barChart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].width).to.equal('10');
@@ -236,7 +236,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set width of line to 7', (done) => {
-    inputProcessing.process('Trace1: set width of line to "7"', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set width of line to 7', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].line.width).to.equal('7');
@@ -244,7 +244,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of line to red', (done) => {
-    inputProcessing.process('Trace1 set color of line to "red"', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set color of line to red', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].line.color).to.equal('red');
@@ -252,7 +252,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set size of marker to 6', (done) => {
-    inputProcessing.process('Trace1 set width of marker to "6"', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set width of marker to 6', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.size).to.equal('6');
@@ -260,7 +260,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of marker to green', (done) => {
-    inputProcessing.process('Trace1 set color of marker to "green"', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set color of marker to green', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.color).to.equal('green');
@@ -268,7 +268,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set opacity of marker to 0.3', (done) => {
-    inputProcessing.process('Trace1 set opacity to "0.3"', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set opacity to 0.3', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.opacity).to.equal('0.3');
@@ -300,7 +300,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set size of legend', (done) => {
-    inputProcessing.process('set size of legend to "20"', scatterPlot, (error, result) => {
+    inputProcessing.process('set size of legend to 20', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.legend.font.size).to.equal('20');
@@ -308,7 +308,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set position of legend', (done) => {
-    inputProcessing.process('set position of legend to "0,0"', scatterPlot, (error, result) => {
+    inputProcessing.process('set position of legend to 0,0', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.legend.x).to.equal('0');
@@ -317,7 +317,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of gridlines of x-axis to red', (done) => {
-    inputProcessing.process('set color of gridlines of x-axis to "red"', scatterPlot, (error, result) => {
+    inputProcessing.process('set color of gridlines of x-axis to red', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.xaxis.gridcolor).to.equal('red');
@@ -325,7 +325,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of gridlines of y-axis to red', (done) => {
-    inputProcessing.process('set color of gridlines of y-axis to "red"', scatterPlot, (error, result) => {
+    inputProcessing.process('set color of gridlines of y-axis to red', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.yaxis.gridcolor).to.equal('red');
@@ -333,7 +333,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set width of gridlines of x-axis to 3', (done) => {
-    inputProcessing.process('set width of gridlines of x-axis to "3"', scatterPlot, (error, result) => {
+    inputProcessing.process('set width of gridlines of x-axis to 3', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.xaxis.gridwidth).to.equal('3');
@@ -341,10 +341,10 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of pie chart elements to green,yellow,pink', (done) => {
-    inputProcessing.process('set colors to "green,yellow,pink"', pieChart, (error, result) => {
+    inputProcessing.process('set colors to green,pink,yellow', pieChart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
-      expect(result.data[0].marker.colors).to.deep.equal(['green', 'yellow', 'pink']);
+      expect(result.data[0].marker.colors).to.deep.equal(['green', 'pink', 'yellow']);
       done();
     });
   });
@@ -394,7 +394,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set bin numbers of histogram', (done) => {
-    inputProcessing.process('Trace1 set start end size of x-axis to "0,100,0.5"', histogram, (error, result) => {
+    inputProcessing.process('Trace1 set start end size of x-axis to 0,100,0.5', histogram, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].autobinx).to.be.false();
