@@ -6,6 +6,11 @@ const modules = require('./modules');
 const ChartFactory = require('../../helpers/chartFactory');
 const csscolors = require('css-color-names');
 
+/**
+ * Extracting the value outside quotation marks
+ * @param matches
+ * @returns {string}
+ */
 const newValueCalculator = (matches) => {
   let newValue = '';
   _.each(matches, (match) => {
@@ -17,6 +22,11 @@ const newValueCalculator = (matches) => {
   return newValue;
 };
 
+/**
+ * Finding if the given command is specific to an axis
+ * @param matches
+ * @returns {string}
+ */
 const axisFinder = (matches) => {
   let axisName = '';
   _.each(matches, (match) => {
@@ -30,6 +40,12 @@ const axisFinder = (matches) => {
   return axisName;
 };
 
+/**
+ * There are only 2 main components for scatter plot and line chart
+ * Checks which component should be edited
+ * @param matches
+ * @returns {string}
+ */
 const attributeFinder = (matches) => {
   let attribute = '';
   _.each(matches, (match) => {
@@ -43,6 +59,11 @@ const attributeFinder = (matches) => {
   return attribute;
 };
 
+/**
+ * Extract color values from given command
+ * @param input
+ * @returns {string}
+ */
 const matchColor = (input) => {
   let colorMatch = '';
   _.forEach(csscolors, (value, key) => {
@@ -54,6 +75,11 @@ const matchColor = (input) => {
   return colorMatch.substring(0, colorMatch.length - 1);
 };
 
+/**
+ * Extract numbers and decimals from given command
+ * @param input
+ * @returns {string}
+ */
 const extractNumbers = (input) => {
   const words = _.words(input, /[^,\s]+/g);
   let matchedValue = '';
@@ -282,7 +308,6 @@ function process(input, plotlyObject, callback){
 
   const chartFactory = new ChartFactory();
   const chart = chartFactory.create(plotlyObject.data[0].type, plotlyObject);
-  // TODO dataName and targetAxis should be removed after finding a better way to extract them from input
   let longestMatch = {
     matches: [],
     rule: {},
@@ -290,6 +315,8 @@ function process(input, plotlyObject, callback){
     targetAxis: '',
     input: input,
   };
+  // iterate through the list of available rules
+  // find the best matching one
   for(let rule of regexes) {
     if(rule.regex.test(input)) {
       // NO default rule yet, instantiates empty chart if null match
@@ -312,6 +339,11 @@ function process(input, plotlyObject, callback){
     }
   }
 
+  /**
+   * Calculate the parameters of a command and execute the command
+   * Pick only data and layout fields from the result
+   * @returns {*}
+   */
   if (longestMatch.matches.length > 0) {
     let calculatedChart = modules[longestMatch.rule.command](chart,
       longestMatch.rule.arguments(longestMatch));
