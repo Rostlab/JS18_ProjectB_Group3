@@ -12,6 +12,8 @@ class Bar extends Chart {
       showgrid: layoutOptions &&
                 layoutOptions.xaxis &&
                 layoutOptions.xaxis.showgrid ? layoutOptions.xaxis.showgrid : true,
+      range: layoutOptions &&
+             layoutOptions.xaxis && layoutOptions.xaxis.range ? layoutOptions.xaxis.range : [],
       gridcolor: layoutOptions &&
                  layoutOptions.xaxis &&
                  layoutOptions.xaxis.gridcolor ? layoutOptions.xaxis.gridcolor : '',
@@ -26,6 +28,8 @@ class Bar extends Chart {
       showgrid: layoutOptions &&
                 layoutOptions.yaxis &&
                 layoutOptions.yaxis.showgrid ? layoutOptions.yaxis.showgrid : true,
+      range: layoutOptions &&
+             layoutOptions.yaxis && layoutOptions.yaxis.range ? layoutOptions.yaxis.range : [],
       gridcolor: layoutOptions &&
                  layoutOptions.yaxis &&
                  layoutOptions.yaxis.gridcolor ? layoutOptions.yaxis.gridcolor : '',

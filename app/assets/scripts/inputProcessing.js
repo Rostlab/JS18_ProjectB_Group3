@@ -265,13 +265,14 @@ var regexes = [
       };
     }
   },
+  // TODO Find a better way to implement this
   {
-    regex: /(?:[\s]|^)(average|"([^"]*)")(?=[\s]|$)/g,
+    regex: /plot average (.*?) of (.*?)$/im,
     command: 'calculateAverage',
     arguments: (longestMatch) => {
       return {
         name: longestMatch.dataName,
-        targetAxis: longestMatch.targetAxis
+        targetAxis: longestMatch.matches[2]
       };
     }
   },
@@ -312,7 +313,6 @@ function process(input, plotlyObject, callback){
     matches: [],
     rule: {},
     dataName: '',
-    targetAxis: '',
     input: input,
   };
   // iterate through the list of available rules
@@ -324,17 +324,12 @@ function process(input, plotlyObject, callback){
       if (matches.length && matches.length > longestMatch.matches.length) {
         longestMatch.matches = _.map(matches, _.trim);
         longestMatch.rule = rule;
-        // TODO find a better way to extract name of data and title of axis
+        // TODO find a better way to extract name of data
         _.each(_.map(chart.data, 'name'), (dataName) => {
           if (_.includes(input, dataName)) {
             longestMatch.dataName = dataName;
           }
         });
-        if (chart.xaxis && chart.xaxis.title && _.includes(input, chart.xaxis.title)) {
-          longestMatch.targetAxis = chart.xaxis.title;
-        } else if (chart.yaxis && chart.yaxis.title && _.includes(input, chart.yaxis.title)) {
-          longestMatch.targetAxis = chart.yaxis.title;
-        };
       }
     }
   }

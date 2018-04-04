@@ -3,7 +3,15 @@ const _  = require('lodash');
 
 const setLegendSize = (chart, params) => {
   try{
-    chart.layout.legend.font.size = params.newValue;
+    if (chart.layout.legend) {
+      chart.layout.legend.font.size = params.newValue;
+    } else {
+      chart.layout.legend = {
+        font: {
+          size: params.newValue
+        }
+      };
+    }
   } catch (error) {
     return error;
   }

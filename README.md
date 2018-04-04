@@ -74,63 +74,101 @@ js18_projectb_group3.editChart(inputCommand, chartData, (error, newChartData) =>
 **Please refer to [Plotly API](https://plot.ly/javascript/) for chart data**
 
 ## Valid Input Commands
-* Set chart title
+> To match the given input with a regex, user should use the keywords. Only exception is calculating average based on the chart data. It uses a well-defined regex.
 
-`change/set title to <new title> (E.g. set title to "Test")`
-* Set axis title
+* Set chart title (*For all chart types*)
 
-`change/set title of x-axis/y-axis to <new title> (E.g. change title of x-axis to "X Axis")`
-* Set axis range
+`Keywords: title, "<any value>" (E.g. set title to "Test")`
 
-`change/set range of x-axis/y-axis to <new range> (E.g. set range of x-axis to 0,20)`
-* Set bar width on a bar chart
+* Set axis title (*Only for Scatter Plot, Line Chart, Bar Chart, Histogram*)
 
-`change/set width of bar to <new width> (E.g. set width of bar to 20)`
-* Set histogram bin number
+`Keywords: title, x axis, y axis, x-axis, y-axis, "<any value>" (E.g. change title of x-axis to "X Axis")`
 
-`<data axis name>: change/set start,end,size of x-axis/y-axis to <new start,end,size> (E.g. Trace1 set start end size of x-axis to 0,10,0.5)`
-* Set width of line on a scatter plot/line chart
+* Set axis range (*Only for Scatter Plot, Line Chart, Bar Chart, Histogram*)
 
-`<data axis name>: change/set width/size of line to <new width> (E.g. Trace1 set width of line to 3)`
-* Set color of line on a scatter plot/line chart
+`Keywords: range, x axis, y axis, x-axis, y-axis, <any number interval> (E.g. set range of x-axis to 0,20)`
 
-`<data axis name>: change/set color of line to <new color> (E.g. Trace1 set color of line to red)`
-* Set width of marker on a scatter plot/line chart
+* Set bar width on a bar chart (*Only for Bar Chart*)
 
-`<data axis name>: change/set width of marker to <new width> (E.g. Trace1 set width of marker to 3)`
-* Set color of marker on a scatter plot/line chart
+`Keywords: width, bar, <any number> (E.g. set width of bar to 20)`
 
-`<data axis name>: change/set color of marker to <new color> (E.g. Trace1 set color of marker to green)`
-* Set mode on a scatter plot/line chart
+* Set histogram bin number (*Only for Histogram*)
 
-`<data axis name>: change/set mode to <new mode> (E.g. Trace1 set mode to "markers")`
-* Set dash type on a scatter plot/line chart
+`Keywords: start, end, size, x axis, y axis, x-axis, y-axis, <any number list>  (E.g. Trace1 set start end size of x-axis to 0,10,0.5)`
 
-`<data axis name>: change/set dash to <new dash type> (E.g. Trace1 set dash to "dashdot")`
-* Set opacity of markers on a scatter plot/line chart
+* Set width of line on a scatter plot/line chart (*Only for Scatter Plot, Line Chart*)
 
-`<data axis name>: change/set opacity to <new opacity> (E.g. Trace1 change opacity to 0.8)`
-* Set symbol of markers on a scatter plot/line chart
+`Keywords: <data axis name>, width, size, line, <any number> (E.g. Trace1 set width of line to 3)`
 
-`<data axis name>: change/set symbol to <new symbol> (E.g. Trace1 change symbol to "star")`
-* Set legend size
+* Set color of line on a scatter plot/line chart (*Only for Scatter Plot, Line Chart*)
 
-`change/set size of legend to <new size> (E.g. change size of legend to 20)`
-* Set legend size
+`Keywords: <data axis name>, color, line, <any color name>(E.g. Trace1 set color of line to red)`
 
-`change/set position of legend to <new position> (E.g. change position of legend to 0,0)`
-* Set color of gridlines
+* Set width of marker on a scatter plot/line chart (*Only for Scatter Plot*)
 
-`change/set color of gridlines of x-axis/y-axis to <new color> (E.g. change color of gridlines of x-axis to red)`
-* Set width of gridlines
+`Keywords: <data axis name>, width, size, marker, <any number> (E.g. Trace1 set width of marker to 3)`
 
-`change/set width/size of gridlines of x-axis/y-axis to <new width> (E.g. set width of gridlines of x-axis to 3)`
-* Set colors on a pie chart (uses the order of data elements)
+* Set color of marker on a scatter plot/line chart (*Only for Scatter Plot*)
 
-`change/set color to <new colors> (E.g. change colors to red,black,yellow)`
-* Set info type on pie chart data
+`Keywords: <data axis name>, color, marker, <any color name> (E.g. Trace1 set color of marker to green)`
 
-`change/set info type to <new info type> (E.g. set info type to "value")`
+* Set mode on a scatter plot/line chart (*Only for Scatter Plot*)
+
+`Keywords: <data axis name>, mode, "<any value from the mode list>" (E.g. Trace1 set mode to "markers")`
+
+*Available modes: ["lines", "markers", "lines+markers", "lines+markers+text", "none"]*
+
+* Set dash type on a scatter plot/line chart (*Only for Scatter Plot, Line Chart*)
+
+`Keywords: <data axis name>, dash, "<any value from the dash style list>" (E.g. Trace1 set dash to "dashdot")`
+
+*Available modes: ["solid", "dot", "dash", "longdash", "dashdot", or "longdashdot"]*
+
+* Set opacity of markers on a scatter plot/line chart (*Only for Scatter Plot*)
+
+`Keywords: <data axis name>, opacity, <any number between 0 and 1> (E.g. Trace1 change opacity to 0.8)`
+
+* Set symbol of markers on a scatter plot/line chart (*Only for Scatter Plot*)
+
+`Keywords: <data axis name>, symbol, "<any value from the available symbols>" (E.g. Trace1 change symbol to "star")`
+
+*Symbols [Plotly API](https://plot.ly/javascript/reference/#box-marker-symbol)*
+
+* Set legend size (*For all chart types*)
+
+`Keywords: legend, size, width , <any number> (E.g. change size of legend to 20)`
+
+* Set legend size (*For all chart types*)
+
+`Keywords: legend, position , <any number combination> (E.g. change position of legend to 0,0)`
+
+*There is no limitation for new position however best choice can be any of these number combinations; 0,0 / 1,0 / 0,1 / 1,1*
+
+* Set color of gridlines (*Only for Scatter Plot, Line Chart, Bar Chart, Histogram*)
+
+`Keywords: color, gridlines, x axis, y axis, x-axis, y-axis, <any color name> (E.g. change color of gridlines of x-axis to red)`
+
+* Set width of gridlines (*Only for Scatter Plot, Line Chart, Bar Chart, Histogram*)
+
+`Keywords: width, size, gridlines, x axis, y axis, x-axis, y-axis, <any number> (E.g. set width of gridlines of x-axis to 3)`
+
+* Set colors on a pie chart (*Only for Pie Chart*)
+
+`Keywords: colors, <any color names> (E.g. change colors to red,black,yellow)`
+
+*We use the alphabetic order of color names. The number of colors should be equal to number of datasets. For instance, if there are only 2 labels, then you should enter only 2 color names*
+
+* Set info type on pie chart data (*Only for Pie Chart*)
+
+`Keywords: info, type, <any info type> (E.g. set info type to "value")`
+
+*Info types: Any combination of "label", "text", "value", "percent", "name" joined with a "+" OR "all" or "none" or "skip"*
+
+* Plot average as a bar chart. (*Converting only scatter plot to bar chart)
+
+`plot average <axis name> of <axis name>  (E.g. Trace1 plot average Pay Rate of Gender)`
+
+*This exact pattern should exist in a given command*
 
 ## Important Notes
 
@@ -161,4 +199,10 @@ To set new titles, new modes, new symbols etc... on the chart object, these new 
 
 Statistical calculations and adding additional data should be implemented as a part of this module.
 
-Chart classes support only a set of properties. More options can be added in the class definitions. The rest of the available keys can be found in [Plotly API](https://plot.ly/javascript/)
+Setting colors data elements of pie chart should be improved. It assigns color values in a alphabetical order.
+
+Setting bin number in a histogram should be improved. Start, end and size values should be used to calculate the bin number.
+
+Removing randomly half of the data points is missing.
+
+Chart classes support only a set of properties. More options can be added in the class definitions. The rest of the available keys can be found in [Plotly API](https://plot.ly/javascript/)  
