@@ -4,178 +4,248 @@
 const _ = require('lodash');
 const modules = require('./modules');
 const ChartFactory = require('../../helpers/chartFactory');
+const csscolors = require('css-color-names');
+
+const newValueCalculator = (matches) => {
+  let newValue = '';
+  _.each(matches, (match) => {
+    if (_.startsWith(match, '"') && _.endsWith(match, '"')) {
+      newValue = _.trim(match, '"');
+    }
+  });
+
+  return newValue;
+};
+
+const axisFinder = (matches) => {
+  let axisName = '';
+  _.each(matches, (match) => {
+    if (match === 'x axis' || match === 'x-axis') {
+      axisName = 'x';
+    } else if (match === 'y axis' || match === 'y-axis') {
+      axisName = 'y';
+    }
+  });
+
+  return axisName;
+};
+
+const attributeFinder = (matches) => {
+  let attribute = '';
+  _.each(matches, (match) => {
+    if (match === 'line') {
+      attribute = 'line';
+    } else if (match === 'marker') {
+      attribute = 'marker';
+    }
+  });
+
+  return attribute;
+};
+
+const matchColor = (input) => {
+  let colorMatch = '';
+  _.forEach(csscolors, (value, key) => {
+    if (_.includes(input, key)) {
+      colorMatch += `${key},`;
+    }
+  });
+
+  return colorMatch.substring(0, colorMatch.length - 1);
+};
+
+const extractNumbers = (input) => {
+  const words = _.words(input, /[^,\s]+/g);
+  let matchedValue = '';
+  _.each(words, (word) => {
+    if (/^\d{1,10}(\.\d{1,4})?$/g.test(word)) {
+      matchedValue += `${word.match(/^\d{1,10}(\.\d{1,4})?$/g)},`;
+    }
+  });
+
+  return matchedValue.substring(0, matchedValue.length - 1);
+};
 
 var regexes = [
   {
-    regex: /^(change|set) title to (.*?)$/im,
+    regex: /(?:[\s]|^)(title|"([^"]*)")(?=[\s]|$)/g,
     command: 'changeTitle',
-    arguments: function(matches) {
-      return {newTitle: matches[2]};
+    arguments: function(longestMatch) {
+      return {
+        newTitle: newValueCalculator(longestMatch.matches)
+      };
     }
   },
   {
-    regex: /^(change|set) title of (x|y)-axis to (.*?)$/im,
+    regex: /(?:[\s]|^)(title|x axis|y axis|x-axis|y-axis|"([^"]*)")(?=[\s]|$)/g,
     command: 'changeAxisTitle',
-    arguments: function(matches) {
-      return {axis: matches[2], newTitle: matches[3]};
+    arguments: function(longestMatch) {
+      return {
+        axis: axisFinder(longestMatch.matches),
+        newTitle: newValueCalculator(longestMatch.matches)};
     }
   },
   {
-    regex: /^(change|set) (width) of bar to (.*?)$/im,
+    regex: /(?:[\s]|^)(width|bar)(?=[\s]|$)/g,
     command: 'changeBarWidth',
-    arguments: function(matches) {
-      return {newBarWidth: matches[3]};
+    arguments: function(longestMatch) {
+      return {
+        newBarWidth: extractNumbers(longestMatch.input)
+      };
     }
   },
   {
-    regex: /^(change|set) range of (x|y)-axis to (.*),(.*)$/im,
+    regex: /(?:[\s]|^)(range|x axis|y axis|x-axis|y-axis|"([^"]*)")(?=[\s]|$)/g,
     command: 'changeAxisRange',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        axis: matches[2],
-        newValue: [matches[3], matches[4]]
+        axis: axisFinder(longestMatch.matches),
+        newValue: _.split(extractNumbers(longestMatch.input), ',')
       };
     }
   },
   {
-    regex: /(change|set) position of legend to (.*),(.*)$/im,
+    regex: /(?:[\s]|^)(position|legend|"([^"]*)")(?=[\s]|$)/g,
     command: 'changeLegendPosition',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
+      let newPosition = _.split(extractNumbers(longestMatch.input), ',');
       return {
-        newXValue: matches[2],
-        newYValue: matches[3]
+        newXValue: newPosition[0],
+        newYValue: newPosition[1]
       };
     }
   },
   {
-    regex: /(.*?): (change|set) color of (marker|line) to (.*?)$/im,
+    regex: /(?:[\s]|^)(color|marker|line)(?=[\s]|$)/g,
     command: 'changeScatterColor',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        name: matches[1],
-        attribute: _.lowerCase(matches[3]),
-        newValue: _.lowerCase(matches[4])
+        name: longestMatch.dataName,
+        attribute: attributeFinder(longestMatch.matches),
+        newValue: matchColor(longestMatch.input),
       };
     }
   },
   {
-    regex: /(.*?): (change|set) (width|size) of (marker|line) to (.*?)$/im,
+    regex: /(?:[\s]|^)(width|size|marker|line)(?=[\s]|$)/g,
     command: 'changeScatterSize',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        name: matches[1],
-        attribute: _.lowerCase(matches[4]),
-        newValue: matches[5]
+        name: longestMatch.dataName,
+        attribute: attributeFinder(longestMatch.matches),
+        newValue: extractNumbers(longestMatch.input)
       };
     }
   },
   {
-    regex: /(.*?): (change|set) mode to (.*?)$/im,
+    regex: /(?:[\s]|^)(mode|"([^"]*)")(?=[\s]|$)/g,
     command: 'changeScatterConnectionLines',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        name: matches[1],
-        newValue: _.lowerCase(matches[3])
+        name: longestMatch.dataName,
+        newValue: newValueCalculator(longestMatch.matches)
       };
     }
   },
   {
-    regex: /(.*?): (change|set) dash to (.*?)$/im,
+    regex: /(?:[\s]|^)(dash|"([^"]*)")(?=[\s]|$)/g,
     command: 'changeScatterLineDash',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        name: matches[1],
-        newValue: _.lowerCase(matches[3])
+        name: longestMatch.dataName,
+        newValue: newValueCalculator(longestMatch.matches)
       };
     }
   },
+  // TODO improve this. Try to match the order of start,end and size to entered values
   {
-    regex: /(.*?): (change|set) start,end,size of (x|y)-axis to (.*),(.*),(.*)$/im,
+    regex: /(?:[\s]|^)(start|end|size|x axis|y axis|x-axis|y-axis)(?=[\s]|$)/g,
     command: 'changeBinNumber',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
+    let newBinNumber =  _.split(extractNumbers(longestMatch.input), ',');
       return {
-        name: matches[1],
-        axis: matches[3],
-        newStart: matches[4],
-        newEnd: matches[5],
-        newSize: matches[6],
+        name: longestMatch.dataName,
+        axis: axisFinder(longestMatch.matches),
+        newStart: newBinNumber[0],
+        newEnd: newBinNumber[1],
+        newSize: newBinNumber[2],
       };
     }
   },
   {
-    regex: /(.*?): (change|set) opacity to (.*?)$/im,
+    regex: /(?:[\s]|^)(opacity)(?=[\s]|$)/g,
     command: 'changeScatterMarkerOpacity',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        name: matches[1],
-        newValue: matches[3]
+        name: longestMatch.dataName,
+        newValue: extractNumbers(longestMatch.input)
       };
     }
   },
   {
-    regex: /(.*?): (change|set) symbol to (.*?)$/im,
+    regex: /(?:[\s]|^)(symbol|"([^"]*)")(?=[\s]|$)/g,
     command: 'changeScatterSymbol',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        name: matches[1],
-        newValue: _.lowerCase(matches[3])
+        name: longestMatch.dataName,
+        newValue: newValueCalculator(longestMatch.matches)
       };
     }
   },
   {
-    regex: /(change|set) size of legend to (.*?)$/im,
+    regex: /(?:[\s]|^)(legend|size|width)(?=[\s]|$)/g,
     command: 'changeLegendSize',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        newValue: matches[2]
+        newValue: extractNumbers(longestMatch.input)
       };
     }
   },
   {
-    regex: /^(change|set) color to (.*?)$/im,
+    regex: /(?:[\s]|^)(colors|pie)(?=[\s]|$)/g,
     command: 'changePieChartColor',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        newValue: matches[2].split(',')
+        newValue: _.words(matchColor(longestMatch.input), /[^,\s;]+/g)
       };
     }
   },
   {
-    regex: /^(change|set) color of gridlines of (x|y)-axis to (.*?)$/im,
+    regex: /(?:[\s]|^)(color|gridlines|x axis|y axis|x-axis|y-axis)(?=[\s]|$)/g,
     command: 'changeGridlinesColor',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        axis: matches[2],
-        newValue: _.lowerCase(matches[3])
+        axis: axisFinder(longestMatch.matches),
+        newValue: matchColor(longestMatch.input),
       };
     }
   },
   {
-    regex: /^(change|set) (width|size) of gridlines of (x|y)-axis to (.*?)$/im,
+    regex: /(?:[\s]|^)(width|size|gridlines|x axis|y axis|x-axis|y-axis)(?=[\s]|$)/g,
     command: 'changeGridlinesSize',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        axis: matches[3],
-        newValue: matches[4]
+        axis: axisFinder(longestMatch.matches),
+        newValue: extractNumbers(longestMatch.input)
       };
     }
   },
   {
-    regex: /^(change|set) info type to (.*?)$/im,
+    regex: /(?:[\s]|^)(info|type|hover|text|"([^"]*)")(?=[\s]|$)/g,
     command: 'changePieChartInfoType',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        newValue: matches[2]
+        newValue: newValueCalculator(longestMatch.matches)
       };
     }
   },
   {
-    regex: /^(.*?): plot average (.*?) of (.*?)$/im,
+    regex: /(?:[\s]|^)(average|"([^"]*)")(?=[\s]|$)/g,
     command: 'calculateAverage',
-    arguments: (matches) => {
+    arguments: (longestMatch) => {
       return {
-        name: matches[1],
-        groupAxisName: matches[3]
+        name: longestMatch.dataName,
+        targetAxis: longestMatch.targetAxis
       };
     }
   },
@@ -212,18 +282,45 @@ function process(input, plotlyObject, callback){
 
   const chartFactory = new ChartFactory();
   const chart = chartFactory.create(plotlyObject.data[0].type, plotlyObject);
-
+  // TODO dataName and targetAxis should be removed after finding a better way to extract them from input
+  let longestMatch = {
+    matches: [],
+    rule: {},
+    dataName: '',
+    targetAxis: '',
+    input: input,
+  };
   for(let rule of regexes) {
     if(rule.regex.test(input)) {
       // NO default rule yet, instantiates empty chart if null match
-      let calculatedChart = modules[rule.command](chart, rule.arguments(rule.regex.exec(input)));
-      if (calculatedChart instanceof Error) {
-        callback(calculatedChart);
-        return;
+      let matches = input.match(rule.regex);
+      if (matches.length && matches.length > longestMatch.matches.length) {
+        longestMatch.matches = _.map(matches, _.trim);
+        longestMatch.rule = rule;
+        // TODO find a better way to extract name of data and title of axis
+        _.each(_.map(chart.data, 'name'), (dataName) => {
+          if (_.includes(input, dataName)) {
+            longestMatch.dataName = dataName;
+          }
+        });
+        if (chart.xaxis && chart.xaxis.title && _.includes(input, chart.xaxis.title)) {
+          longestMatch.targetAxis = chart.xaxis.title;
+        } else if (chart.yaxis && chart.yaxis.title && _.includes(input, chart.yaxis.title)) {
+          longestMatch.targetAxis = chart.yaxis.title;
+        };
       }
-      callback(null, _.pick(calculatedChart, ['data', 'layout']));
+    }
+  }
+
+  if (longestMatch.matches.length > 0) {
+    let calculatedChart = modules[longestMatch.rule.command](chart,
+      longestMatch.rule.arguments(longestMatch));
+    if (calculatedChart instanceof Error) {
+      callback(calculatedChart);
       return;
     }
+    callback(null, _.pick(calculatedChart, ['data', 'layout']));
+    return;
   }
 
   return callback(new Error('Command not found'));

@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Rostlab/JS18_ProjectB_Group3#readme",
   "dependencies": {
     "body-parser": "1.18.2",
+    "css-color-names": "0.0.4",
     "express": "4.16.3",
     "lodash": "4.17.5",
     "method-override": "2.3.10",

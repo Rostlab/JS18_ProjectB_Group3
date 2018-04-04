@@ -10,7 +10,7 @@ const setBarChart = (chart, params) => {
       if (d.name === params.name) {
         let numbers = {};
         let targetAxis = 'x';
-        if (chart.layout.yaxis.title === params.groupAxisName) {
+        if (chart.layout.yaxis.title === params.targetAxis) {
           targetAxis = 'y';
         }
         _.each(d[targetAxis], (value, index) => {

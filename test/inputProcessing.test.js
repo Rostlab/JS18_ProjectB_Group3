@@ -137,7 +137,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects missing chart property error, missing layout', (done) => {
-    inputProcessing.process('set title to Test', { data: [] }, (error, result) => {
+    inputProcessing.process('set title to "Test"', { data: [] }, (error, result) => {
       assert.exists(error);
       expect(error.message).to.equal('Data or layout missing');
       assert.notExists(result);
@@ -145,7 +145,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects missing chart property error, missing data', (done) => {
-    inputProcessing.process('set title to Test', { layout: {} }, (error, result) => {
+    inputProcessing.process('set title to "Test"', { layout: {} }, (error, result) => {
       assert.exists(error);
       expect(error.message).to.equal('Data or layout missing');
       assert.notExists(result);
@@ -153,7 +153,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects invalid data error', (done) => {
-    inputProcessing.process('set title to Test', { data: [], layout: {} }, (error, result) => {
+    inputProcessing.process('set title to "Test"', { data: [], layout: {} }, (error, result) => {
       assert.exists(error);
       expect(error.message).to.equal('Data array cant be empty');
       assert.notExists(result);
@@ -178,7 +178,7 @@ describe('Input Processing Tests', () => {
       },
       name: 'Trace 1',
     }];
-    inputProcessing.process('set title to Test', { data: testData, layout: {} }, (error, result) => {
+    inputProcessing.process('set title to "Test"', { data: testData, layout: {} }, (error, result) => {
       assert.exists(error);
       expect(error.message).to.equal('Layout cant be empty');
       assert.notExists(result);
@@ -186,7 +186,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set title', (done) => {
-    inputProcessing.process('set title to Test', barChart, (error, result) => {
+    inputProcessing.process('set title to "Test"', barChart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.title).to.equal('Test');
@@ -194,7 +194,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set title of x-axis', (done) => {
-    inputProcessing.process('set title of x-axis to X', barChart, (error, result) => {
+    inputProcessing.process('set title of x-axis to "X"', barChart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.xaxis.title).to.equal('X');
@@ -202,7 +202,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set title of y-axis', (done) => {
-    inputProcessing.process('set title of y-axis to Y', barChart, (error, result) => {
+    inputProcessing.process('set title of y-axis to "Y"', barChart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.layout.yaxis.title).to.equal('Y');
@@ -236,7 +236,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set width of line to 7', (done) => {
-    inputProcessing.process('Trace1: set width of line to 7', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set width of line to 7', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].line.width).to.equal('7');
@@ -244,7 +244,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of line to red', (done) => {
-    inputProcessing.process('Trace1: set color of line to red', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set color of line to red', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].line.color).to.equal('red');
@@ -252,7 +252,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set size of marker to 6', (done) => {
-    inputProcessing.process('Trace1: set width of marker to 6', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set width of marker to 6', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.size).to.equal('6');
@@ -260,7 +260,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of marker to green', (done) => {
-    inputProcessing.process('Trace1: set color of marker to green', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set color of marker to green', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.color).to.equal('green');
@@ -268,7 +268,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set opacity of marker to 0.3', (done) => {
-    inputProcessing.process('Trace1: set opacity to 0.3', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set opacity to 0.3', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.opacity).to.equal('0.3');
@@ -276,7 +276,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set symbol of marker to star', (done) => {
-    inputProcessing.process('Trace1: set symbol to star', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set symbol to "star"', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].marker.symbol).to.equal('star');
@@ -284,7 +284,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set mode to lines', (done) => {
-    inputProcessing.process('Trace1: set mode to lines', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set mode to "lines"', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].mode).to.equal('lines');
@@ -292,7 +292,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set line type to dash', (done) => {
-    inputProcessing.process('Trace1: set dash to dash', scatterPlot, (error, result) => {
+    inputProcessing.process('Trace1 set dash to "dash"', scatterPlot, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].line.dash).to.equal('dash');
@@ -341,15 +341,15 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set color of pie chart elements to green,yellow,pink', (done) => {
-    inputProcessing.process('set color to green,yellow,pink', pieChart, (error, result) => {
+    inputProcessing.process('set colors to green,pink,yellow', pieChart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
-      expect(result.data[0].marker.colors).to.deep.equal(['green', 'yellow', 'pink']);
+      expect(result.data[0].marker.colors).to.deep.equal(['green', 'pink', 'yellow']);
       done();
     });
   });
   it('expects to set info type to percent', (done) => {
-    inputProcessing.process('set info type to percent', pieChart, (error, result) => {
+    inputProcessing.process('set info type to "percent"', pieChart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].hoverinfo).to.equal('percent');
@@ -379,7 +379,7 @@ describe('Input Processing Tests', () => {
         },
       },
     };
-    inputProcessing.process('Trace1: plot average Pay Rate of Gender', chart, (error, result) => {
+    inputProcessing.process('Trace1 plot average Pay Rate of Gender', chart, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].type).to.equal('bar');
@@ -394,7 +394,7 @@ describe('Input Processing Tests', () => {
     });
   });
   it('expects to set bin numbers of histogram', (done) => {
-    inputProcessing.process('Trace1: set start,end,size of x-axis to 0,100,0.5', histogram, (error, result) => {
+    inputProcessing.process('Trace1 set start end size of x-axis to 0,100,0.5', histogram, (error, result) => {
       assert.notExists(error);
       assert.exists(result);
       expect(result.data[0].autobinx).to.be.false();
