@@ -56,12 +56,14 @@ describe('BarChart Tests', () => {
       xaxis: {
         title: 'X Axis',
         showgrid: true,
+        range: [],
         gridcolor: 'black',
         gridwidth: 3,
       },
       yaxis: {
         title: 'Y Axis',
         showgrid: true,
+        range: [],
         gridcolor: 'black',
         gridwidth: 3,
       },

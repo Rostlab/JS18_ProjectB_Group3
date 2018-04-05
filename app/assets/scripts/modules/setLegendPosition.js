@@ -3,8 +3,15 @@ const _  = require('lodash');
 
 const setLegendPosition = (chart, params) => {
   try{
-    chart.layout.legend.x = params.newXValue;
-    chart.layout.legend.y = params.newYValue;
+    if (chart.layout.legend) {
+      chart.layout.legend.x = params.newXValue;
+      chart.layout.legend.y = params.newYValue;
+    } else {
+      chart.layout.legend = {
+        x: params.newXValue,
+        y: params.newYValue,
+      };
+    }
   } catch (error) {
     return error;
   }
