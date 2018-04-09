@@ -1,7 +1,7 @@
 {
   "name": "js18_projectb_group3",
   "version": "1.0.0",
-  "description": "",
+  "description": "Edit plots using natural language",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
