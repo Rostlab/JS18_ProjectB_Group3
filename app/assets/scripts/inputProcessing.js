@@ -276,6 +276,16 @@ var regexes = [
       };
     }
   },
+  {
+    regex: /^(.*?): change color of bar(s)? to (.*?)$/im,
+    command: 'changeBarColor',
+    arguments: (matches) => {
+      return {
+        name: matches[1],
+        newBarColor: matches[3]
+      };
+    }
+  },
 ];
 
 // processes the nlp input
